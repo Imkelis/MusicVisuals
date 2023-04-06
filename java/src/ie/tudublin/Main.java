@@ -25,6 +25,6 @@ public class Main {
 
 	public static void main(String[] args) {
 		Main main = new Main();
-		main.ignasVisual1();
+		main.ignasVisual2();
 	}
 }

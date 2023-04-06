@@ -18,7 +18,6 @@ public class IgnasVisual1 extends Visual {
     int Mode = 1;
     int color = 0;
     float spawns = 0;
-    float egg = 1;
 
     float lerpBuffer[] = new float[2048];
     float lerpFFTbuffer[] = new float[2048];
