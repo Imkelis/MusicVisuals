@@ -20,17 +20,17 @@ public class IgnasVisual1 extends Visual {
     float spawns = 0;
     float egg = 1;
 
-    float lerpBuffer[] = new float[1024];
-    float lerpFFTbuffer[] = new float[1024];
+    float lerpBuffer[] = new float[2048];
+    float lerpFFTbuffer[] = new float[2048];
 
     public void settings() {
-        size(1024, 1000, P3D);
+        size(2048, 1000, P3D);
     }
 
     public void setup() {
         colorMode(HSB);
         minim = new Minim(this);
-        aplayer = minim.loadFile("M.O.O.N.mp3", 1024); // Temp Song, to be changed
+        aplayer = minim.loadFile("M.O.O.N.mp3", 2048); // Temp Song, to be changed
         aplayer.play();
         abuffer = aplayer.mix;
 
@@ -55,27 +55,29 @@ public class IgnasVisual1 extends Visual {
 
         background(0);
 
-        for (int position = 0; position < 4; position++) {
+        for (int position = 0; position < 5; position++) {
 
             pushMatrix();
             rotate = 0;
 
             if (position == 0) {
+                translate(0, 0, -400);
+            }
 
-                translate(halfHeight / 2, halfWidth / 2);
+            else if (position == 1) {
+                translate(width, 0, -400);
+            }
 
-            } else if (position == 1) {
+            else if (position == 2) {
+                translate(0, height, -400);
+            }
 
-                translate(halfHeight * 1.5f, halfWidth / 2);
+            else if (position == 3) {
+                translate(width, height, -400);
+            }
 
-            } else if (position == 2) {
-
-                translate(halfHeight / 2, halfWidth * 1.5f);
-
-            } else if (position == 3) {
-
-                translate(halfHeight * 1.5f, halfWidth * 1.5f);
-
+            else if (position == 4) {
+                translate(halfWidth, halfHeight, -400);
             }
 
             for (int i = 0; i < lerpBuffer.length; i++) {
@@ -92,7 +94,7 @@ public class IgnasVisual1 extends Visual {
             box(2 * biggest * 1500);
             box(biggest * 1500);
 
-            if (biggest > 0.022) {
+            if (biggest > 0.025) {
                 color -= 5;
                 if (color < 0) {
                     color = abs(color) + 255;
@@ -101,11 +103,9 @@ public class IgnasVisual1 extends Visual {
 
             popMatrix();
 
-            if (biggest > 0.022) {
+            if (biggest > 0.025) {
                 pushMatrix();
-
-                translate(halfHeight, halfWidth);
-
+                translate(halfWidth, halfHeight, -400);
                 box(spawns);
                 popMatrix();
             }
@@ -119,19 +119,4 @@ public class IgnasVisual1 extends Visual {
 
     }
 
-    // Might be changed to on screen buttons, not sure thought cause that would
-    // block visuals.
-    public void keyPressed() {
-        if (key >= '0' && key <= '9') {
-            Mode = key - '0';
-        }
-        if (keyCode == ' ') {
-            if (aplayer.isPlaying()) {
-                aplayer.pause();
-            } else {
-                aplayer.rewind();
-                aplayer.play();
-            }
-        }
-    }
 }
