@@ -16,11 +16,12 @@ public class IgnasVisual2 extends Visual {
     float biggest = 0;
     float speed = 0;
     float smallest = 10000;
-    int lineamt = 4;
     float count1 = 1;
     float count2 = 1;
     float count3 = 1;
     float count4 = 1;
+    float count5 = 1;
+    float acceleration = 0.05f;
 
     Minim minim;
     AudioPlayer aplayer;
@@ -33,7 +34,7 @@ public class IgnasVisual2 extends Visual {
     }
 
     public void setup() {
-        colorMode(HSB);
+        colorMode(HSB, 360, 100, 100);
         minim = new Minim(this);
         aplayer = minim.loadFile("M.O.O.N.mp3", 1048); // Temp Song, to be changed
         aplayer.play();
@@ -64,9 +65,9 @@ public class IgnasVisual2 extends Visual {
         }
         average = total / abuffer.size();
 
-        background(255);
+        background(0);
 
-        stroke(255, 255, 0);
+        stroke(330, 100, 100);
         strokeWeight(3);
         line(0, halfHeight, width, halfHeight);
         line(halfWidth, halfHeight, 0, halfHeight + halfHeight * .3f);
@@ -76,34 +77,63 @@ public class IgnasVisual2 extends Visual {
         line(halfWidth, halfHeight, (float) width, halfHeight + halfHeight * .9f);
         line(halfWidth, halfHeight, (float) width, halfHeight + halfHeight * .3f);
 
-        stroke(255, 255, 255);
+        strokeWeight(4);
+        stroke(175, 47, 88);
+        line(0, halfHeight - 4, width, halfHeight - 4);
+        stroke(0);
+        line(0, halfHeight - 8, width, halfHeight - 8);
+        stroke(175, 47, 88);
+        line(0, halfHeight - 12, width, halfHeight - 12);
+        stroke(0);
+        line(0, halfHeight - 16, width, halfHeight - 16);
+        stroke(175, 47, 88);
+        line(0, halfHeight - 20, width, halfHeight - 20);
+        stroke(0);
+        line(0, halfHeight - 24, width, halfHeight - 24);
+        stroke(175, 47, 88);
+        line(0, halfHeight - 28, width, halfHeight - 28);
+        stroke(0);
+        line(0, halfHeight - 32, width, halfHeight - 32);
+        stroke(175, 47, 88);
+        line(0, halfHeight - 36, width, halfHeight - 36);
+        stroke(0);
+        line(0, halfHeight - 40, width, halfHeight - 40);
+        stroke(175, 47, 88);
+        line(0, halfHeight - 44, width, halfHeight - 44);
 
-        line(0, halfHeight + count1, width, halfHeight + count1);
+        fill(200, 54, 100);
+        rect(0, 0, width, halfHeight - 44);
 
         // if (lineamt < 0) {
         // lineamt--;
         // speed = map(lerpBuffer[i], -0.06830386f, 0.06844372f, 0f, 100f);
-
         // }
 
-        count1 += (1f + (count1 * 15f / halfHeight));
-        println(count1);
+        //// A whole lotta code for moving lines. Idk how to implement this any other
+        //// way. Ill try again later.
+        stroke(330, 100, 100);
 
-        if (count1 > 125 || count2 > 1) {
-            stroke(200, 255, 255);
+        line(0, halfHeight + count1, width, halfHeight + count1);
+
+        count1 += (1f + (count1 * acceleration));
+
+        if (count1 > 122 || count2 > 1) {
             line(0, halfHeight + count2, width, halfHeight + count2);
-            count2 += (1f + (count2 * 15f / halfHeight));
+            count2 += (1f + (count2 * acceleration));
         }
 
-        if (count2 > 125 || count3 > 1) {
-            stroke(155, 255, 255);
+        if (count2 > 122 || count3 > 1) {
             line(0, halfHeight + count3, width, halfHeight + count3);
-            count3 += (1f + (count3 * 15f / halfHeight));
+            count3 += (1f + (count3 * acceleration));
         }
-        if (count3 > 125 || count4 > 1) {
-            stroke(100, 255, 255);
+        if (count3 > 122 || count4 > 1) {
             line(0, halfHeight + count4, width, halfHeight + count4);
-            count4 += (1f + (count4 * 15f / halfHeight));
+            count4 += (1f + (count4 * acceleration));
+        }
+
+        if (count4 > 122 || count5 > 1) {
+            line(0, halfHeight + count5, width, halfHeight + count5);
+            count5 += (1f + (count5 * acceleration));
         }
 
         if (count1 > 500) {
@@ -118,6 +148,10 @@ public class IgnasVisual2 extends Visual {
         }
         if (count4 > 500) {
             count4 = 1;
+        }
+
+        if (count5 > 500) {
+            count5 = 1;
         }
 
     }
