@@ -8,12 +8,13 @@ import ddf.minim.AudioPlayer;
 import ddf.minim.Minim;
 import ddf.minim.analysis.FFT;
 
+//circle color = 47, 30, 77
+
 public class IgnasVisual2 extends Visual {
 
     float lerpBuffer[] = new float[2048];
     float lerpFFTbuffer[] = new float[2048];
 
-    float biggest = 0;
     float speed = 0;
     float smallest = 10000;
     float count1 = 1;
@@ -22,6 +23,7 @@ public class IgnasVisual2 extends Visual {
     float count4 = 1;
     float count5 = 1;
     float acceleration = 0.05f;
+    float sun = 500;
 
     Minim minim;
     AudioPlayer aplayer;
@@ -36,7 +38,7 @@ public class IgnasVisual2 extends Visual {
     public void setup() {
         colorMode(HSB, 360, 100, 100);
         minim = new Minim(this);
-        aplayer = minim.loadFile("M.O.O.N.mp3", 1048); // Temp Song, to be changed
+        aplayer = minim.loadFile("M.O.O.N.mp3", 2048); // Temp Song, to be changed
         aplayer.play();
         abuffer = aplayer.mix;
 
@@ -48,8 +50,12 @@ public class IgnasVisual2 extends Visual {
         float halfHeight = height / 2;
         float halfWidth = width / 2;
         float total = 0;
+        float biggest = 0;
         float average = 0;
         float position = halfHeight;
+        float o = 0;
+
+        fft.forward(abuffer);
 
         for (int i = 0; i < abuffer.size(); i++) {
             lerpFFTbuffer[i] = lerp(lerpFFTbuffer[i], fft.getBand(i), 0.0005f);
@@ -63,9 +69,36 @@ public class IgnasVisual2 extends Visual {
             } // smallest-0.06830386
 
         }
-        average = total / abuffer.size();
 
-        background(0);
+        background(11, 100, 62);
+        noStroke();
+        fill(200, 45, 78);
+        rect(0, 0, width, 76);
+        fill(206, 41, 77);
+        rect(0, 76, width, 152);
+        fill(221, 35, 77);
+        rect(0, 152, width, 228);
+        fill(238, 30, 77);
+        rect(0, 228, width, 304);
+        fill(260, 35, 76);
+        rect(0, 304, width, 380);
+        fill(282, 45, 75);
+        rect(0, 380, width, 456);
+
+        for (int i = 0; i < lerpBuffer.length / 15; i++) {
+
+            speed = map(lerpBuffer[i], -0.06830386f, 0.06844372f, 0f, 100f);
+
+            fill(330, 100, 100);
+
+            rect(i + o, halfHeight - 44, 40, -fft.getBand(i) * 1.5f);
+            o += 40;
+
+            fill(47, 30, 77);
+            ellipse((halfWidth) + cos(sun) * 600f, halfHeight + sin(sun) * 300f, 250 + (abuffer.get(i) * 40f),
+                    250 + (abuffer.get(i) * 40f));
+
+        }
 
         stroke(330, 100, 100);
         strokeWeight(3);
@@ -100,14 +133,8 @@ public class IgnasVisual2 extends Visual {
         line(0, halfHeight - 40, width, halfHeight - 40);
         stroke(175, 47, 88);
         line(0, halfHeight - 44, width, halfHeight - 44);
-
-        fill(200, 54, 100);
-        rect(0, 0, width, halfHeight - 44);
-
-        // if (lineamt < 0) {
-        // lineamt--;
-        // speed = map(lerpBuffer[i], -0.06830386f, 0.06844372f, 0f, 100f);
-        // }
+        fill(24, 54, 11);
+        rect(-5, halfHeight - 5, width + 5, halfHeight + 5);
 
         //// A whole lotta code for moving lines. Idk how to implement this any other
         //// way. Ill try again later.
@@ -154,5 +181,6 @@ public class IgnasVisual2 extends Visual {
             count5 = 1;
         }
 
+        sun += .003f;
     }
 }
