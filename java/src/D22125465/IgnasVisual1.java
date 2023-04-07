@@ -23,7 +23,7 @@ public class IgnasVisual1 extends Visual {
     float lerpFFTbuffer[] = new float[2048];
 
     public void settings() {
-        size(1024, 1000, P3D);
+        size(2048, 1000, P3D);
     }
 
     public void setup() {

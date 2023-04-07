@@ -9,10 +9,7 @@ import ddf.minim.analysis.FFT;
 import processing.core.PApplet;
 import processing.core.PVector;
 
-
-
-public class MainSketch extends PApplet
-{
+public class MainSketch extends PApplet {
 
     Minim minim;
     AudioPlayer ap;
@@ -22,22 +19,21 @@ public class MainSketch extends PApplet
     WaveForm wave;
     ArrayList<Star> entities = new ArrayList<>();
 
-	public void settings()
-	{
-		size(displayWidth, displayHeight);
+    public void settings() {
+        size(displayWidth, displayHeight);
 
-	}
+    }
 
-	public void setup() {
+    public void setup() {
         background(0);
         noFill();
         smooth();
         noStroke();
-		colorMode(RGB);
+        colorMode(RGB);
 
         minim = new Minim(this);
         // ai = minim.getLineIn(Minim.MONO, 1024, 44100, 16);
-        ap = minim.loadFile("./fadeaway.mp3", 1024);  
+        ap = minim.loadFile("M.O.O.N.mp3", 1024);
         ab = ap.mix;
         ap.play();
 
@@ -48,43 +44,43 @@ public class MainSketch extends PApplet
 
         int gap = 100;
         int count;
-        for(int w = gap; w < width - gap; w+=gap){
+        for (int w = gap; w < width - gap; w += gap) {
             count = 0;
-            for(int h = gap; h < height - gap; h+=gap){
-                if(random(0f, 1f) > .6f && count < 3){
-                    entities.add(new Celestial(10, new PVector(w, h), color(random(255), random(255), random(255)),(int) random(2,1000), this, fft));
+            for (int h = gap; h < height - gap; h += gap) {
+                if (random(0f, 1f) > .6f && count < 3) {
+                    entities.add(new Celestial(10, new PVector(w, h), color(random(255), random(255), random(255)),
+                            (int) random(2, 1000), this, fft));
                     count++;
                 }
             }
         }
 
-         // TEST
-        // entities.add(new Celestial(10, new PVector(width / 2, height / 2), color(random(255), 255, 255), 3, this));
+        // TEST
+        // entities.add(new Celestial(10, new PVector(width / 2, height / 2),
+        // color(random(255), 255, 255), 3, this));
 
         element = new CenterElement(this, fft);
         wave = new WaveForm(this, ab);
-	}
+    }
 
-    public void keyPressed(){
-        if(ap.isPlaying()){
+    public void keyPressed() {
+        if (ap.isPlaying()) {
             ap.pause();
         }
 
-        else if(ap.position() == ap.length()){
+        else if (ap.position() == ap.length()) {
             ap.rewind();
             ap.play();
-        } 
-        else{
+        } else {
             ap.play();
         }
     }
 
-
-    public void draw(){
+    public void draw() {
         background(0);
-        fft.forward(ab); 
+        fft.forward(ab);
 
-        for(Star s : entities){
+        for (Star s : entities) {
             s.render();
         }
         element.render();
