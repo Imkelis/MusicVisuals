@@ -2,6 +2,7 @@ package D22126809;
 
 import ddf.minim.analysis.FFT;
 import processing.core.PApplet;
+import processing.core.PConstants;
 
 public class CenterElement {
     private PApplet p;
@@ -24,21 +25,23 @@ public class CenterElement {
     }
 
     public void outwardsSpikes(float amp){
+        p.colorMode(PConstants.HSB);
         p.strokeWeight(3);
         float scaleFactor = 2;
         float xCord, yCord, angle = 0;
-        float strokeV = 0;
+
         for(int i = 0; i < fft.specSize(); i+=10){
             angle = PApplet.radians(i);
 			xCord = getW() + PApplet.sin(angle) * (amp * scaleFactor);
 			yCord = getH() + PApplet.cos(angle) * (amp * scaleFactor);
-
-            strokeV = PApplet.pow(PApplet.map(i, 15, fft.specSize(), 0, 1), 2) * 255;
-
-            p.stroke(0, strokeV, strokeV);
+        
+            p.stroke(PApplet.map(i, 0, fft.specSize(), 0, 255), 255 ,255); 
             p.line(getW(), getH(), xCord, yCord);
         }
+
+
         p.noStroke();
+        p.colorMode(PConstants.RGB);
         
     }
 

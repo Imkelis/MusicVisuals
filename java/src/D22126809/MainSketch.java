@@ -37,12 +37,12 @@ public class MainSketch extends PApplet
 
         minim = new Minim(this);
         // ai = minim.getLineIn(Minim.MONO, 1024, 44100, 16);
-        ap = minim.loadFile("./fadeaway.mp3", 1024);  
+        ap = minim.loadFile("fadeaway.mp3", 1024);  
         ab = ap.mix;
         ap.play();
 
         // CURRENTLY MUTED
-        // ap.mute();
+        ap.mute();
 
         fft = new FFT(1024, 44100);
 
