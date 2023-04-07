@@ -1,13 +1,14 @@
 package D22125465;
 
+import ie.tudublin.Visual;
+
 import ddf.minim.AudioBuffer;
 import ddf.minim.AudioInput;
 import ddf.minim.AudioPlayer;
 import ddf.minim.Minim;
 import ddf.minim.analysis.FFT;
-import processing.core.PApplet;
 
-public class IgnasVisual1 extends PApplet {
+public class IgnasVisual1 extends Visual {
     Minim minim;
     AudioPlayer aplayer;
     AudioInput ainput;
@@ -18,17 +19,17 @@ public class IgnasVisual1 extends PApplet {
     int color = 0;
     float spawns = 0;
 
-    float lerpBuffer[] = new float[1024];
-    float lerpFFTbuffer[] = new float[1024];
+    float lerpBuffer[] = new float[2048];
+    float lerpFFTbuffer[] = new float[2048];
 
     public void settings() {
-        size(1024, 1000);
+        size(1024, 1000, P3D);
     }
 
     public void setup() {
         colorMode(HSB);
         minim = new Minim(this);
-        aplayer = minim.loadFile("heroplanet.mp3", 1024); // Temp Song, to be changed
+        aplayer = minim.loadFile("M.O.O.N.mp3", 2048); // Temp Song, to be changed
         aplayer.play();
         abuffer = aplayer.mix;
 
@@ -53,19 +54,29 @@ public class IgnasVisual1 extends PApplet {
 
         background(0);
 
-        for (int position = 0; position < 4; position++) {
+        for (int position = 0; position < 5; position++) {
 
             pushMatrix();
             rotate = 0;
 
             if (position == 0) {
-                translate(halfHeight / 2, halfWidth / 2);
-            } else if (position == 1) {
-                translate(halfHeight * 1.5f, halfWidth / 2);
-            } else if (position == 2) {
-                translate(halfHeight / 2, halfWidth * 1.5f);
-            } else if (position == 3) {
-                translate(halfHeight * 1.5f, halfWidth * 1.5f);
+                translate(0, 0, -400);
+            }
+
+            else if (position == 1) {
+                translate(width, 0, -400);
+            }
+
+            else if (position == 2) {
+                translate(0, height, -400);
+            }
+
+            else if (position == 3) {
+                translate(width, height, -400);
+            }
+
+            else if (position == 4) {
+                translate(halfWidth, halfHeight, -400);
             }
 
             for (int i = 0; i < lerpBuffer.length; i++) {
@@ -78,11 +89,11 @@ public class IgnasVisual1 extends PApplet {
 
             noFill();
             stroke(color, 255, 255);
-            box(Math.min(5 * biggest * 1000, 200f));
-            box(2 * biggest * 3000);
+            box(Math.min(5 * biggest * 1500, 250f));
+            box(2 * biggest * 1500);
             box(biggest * 1500);
 
-            if (biggest > 0.0245) {
+            if (biggest > 0.025) {
                 color -= 5;
                 if (color < 0) {
                     color = abs(color) + 255;
@@ -91,15 +102,14 @@ public class IgnasVisual1 extends PApplet {
 
             popMatrix();
 
-            if (biggest > 0.0245 && position == 0) {
+            if (biggest > 0.025) {
                 pushMatrix();
-
-                translate(halfHeight, halfWidth);
+                translate(halfWidth, halfHeight, -400);
                 box(spawns);
                 popMatrix();
             }
 
-            spawns += biggest * 500;
+            spawns += biggest * 1000;
 
             if (spawns > 3000f) {
                 spawns = 0;
@@ -108,19 +118,4 @@ public class IgnasVisual1 extends PApplet {
 
     }
 
-    // Might be changed to on screen buttons, not sure thought cause that would
-    // block visuals.
-    public void keyPressed() {
-        if (key >= '0' && key <= '9') {
-            Mode = key - '0';
-        }
-        if (keyCode == ' ') {
-            if (aplayer.isPlaying()) {
-                aplayer.pause();
-            } else {
-                aplayer.rewind();
-                aplayer.play();
-            }
-        }
-    }
 }
