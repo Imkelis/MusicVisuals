@@ -22,7 +22,7 @@ public class IgnasVisual1 extends PApplet {
     float lerpFFTbuffer[] = new float[1024];
 
     public void settings() {
-        size(1024, 1000, P3D);
+        size(1024, 1000);
     }
 
     public void setup() {
