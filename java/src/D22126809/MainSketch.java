@@ -42,24 +42,14 @@ public class MainSketch extends PApplet
         ap.play();
 
         // CURRENTLY MUTED
-        ap.mute();
+        // ap.mute();
 
         fft = new FFT(1024, 44100);
 
-        int gap = 100;
-        int count;
-        for(int w = gap; w < width - gap; w+=gap){
-            count = 0;
-            for(int h = gap; h < height - gap; h+=gap){
-                if(random(0f, 1f) > .6f && count < 3){
-                    entities.add(new Celestial(10, new PVector(w, h), color(random(255), random(255), random(255)),(int) random(2,1000), this, fft));
-                    count++;
-                }
-            }
-        }
-
-         // TEST
-        // entities.add(new Celestial(10, new PVector(width / 2, height / 2), color(random(255), 255, 255), 3, this));
+        entities.add(new Celestial(10, new PVector((width / 2) - 300, height / 2), color(random(255), 255, 255), (int)random(3, 10000), this, fft));
+        entities.add(new Celestial(10, new PVector(width / 2, (height / 2) + 300), color(random(255), 255, 255), (int)random(3, 10000), this, fft));
+        entities.add(new Celestial(10, new PVector((width / 2) + 300, height / 2), color(random(255), 255, 255), (int)random(3, 10000), this, fft));
+        entities.add(new Celestial(10, new PVector(width / 2, (height / 2) - 300), color(random(255), 255, 255), (int)random(3, 10000), this, fft));
 
         element = new CenterElement(this, fft);
         wave = new WaveForm(this, ab);

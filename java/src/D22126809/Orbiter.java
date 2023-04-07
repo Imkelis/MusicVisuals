@@ -105,7 +105,7 @@ public class Orbiter extends Star {
         angle += velocity;
         p.fill(getColor());
         p.circle(x1, y1, 10);
-        // p.line(x1, y1, 0, 0);
+        p.line(x1, y1, 0, 0);
         p.popMatrix();
     }
 
