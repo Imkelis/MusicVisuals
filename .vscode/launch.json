@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "D22126809.Main",
+            "projectName": "java"
+        },
+        {
+            "type": "java",
             "name": "main",
             "request": "launch",
             "mainClass": "example.main",

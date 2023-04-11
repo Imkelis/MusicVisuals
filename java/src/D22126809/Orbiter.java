@@ -2,6 +2,7 @@ package D22126809;
 
 import ddf.minim.analysis.FFT;
 import processing.core.PApplet;
+import processing.core.PConstants;
 import processing.core.PVector;
 
 public class Orbiter extends Star {
@@ -23,19 +24,26 @@ public class Orbiter extends Star {
 
     @Override
     public void render() {
-        float mappedValue = PApplet.map(PApplet.constrain(highhats(), -1, 1), -1, 1, 0, 100);
-        orbit(PApplet.lerp(0f, mappedValue, 0.2f));
+        orbit();
+        if(p.frameCount % 5 == 0){
+          changeColor();
+        }
+    }
 
-        
+    public void changeColor(){
+        p.colorMode(PConstants.HSB);
+        int c =  p.color(PApplet.map(PApplet.constrain(highhats(), -1, 1), -1, 1, 0, 255), 255, 255);
+        setColor(c);
+        p.colorMode(PConstants.RGB);
     }
 
     @Override
     public float calculateFFT(){
-        float avgAmp = Float.MAX_VALUE;
+        float avgAmp = Float.MIN_VALUE;
         for(int i = 0; i < fft.specSize() / 2; i++){
             lerpedBuffer[i] = PApplet.lerp(lerpedBuffer[i], fft.getBand(i), 0.07f);
             avgAmp += lerpedBuffer[i];
-            if(lerpedBuffer[i] < avgAmp){
+            if(lerpedBuffer[i] > avgAmp){
                 avgAmp = lerpedBuffer[i];
             }
         }
@@ -96,16 +104,20 @@ public class Orbiter extends Star {
       
     
 
-    public void orbit(float amp){
-        p.stroke(255);
+    public void orbit(){
+        float amp = PApplet.map(PApplet.constrain(highhats(), -1, 1), -1, 1, 0, 50);
+        // amp = PApplet.lerp(0f, amp, 0.07f);
+
         p.pushMatrix();
-        x1 = PApplet.sin(angle) * (amp + celestialDistance);
-        y1 = PApplet.cos(angle) * (amp + celestialDistance);
+        x1 = PApplet.lerp(x1, PApplet.sin(angle) * (amp + celestialDistance), 0.4f);
+        y1 = PApplet.lerp(y1, PApplet.cos(angle) * (amp + celestialDistance), 0.4f);
         p.translate(getV().x, getV().y);
         angle += velocity;
         p.fill(getColor());
         p.circle(x1, y1, 10);
+        p.stroke(getColor());
         p.line(x1, y1, 0, 0);
+        p.noStroke(); 
         p.popMatrix();
     }
 
