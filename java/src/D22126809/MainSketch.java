@@ -33,7 +33,7 @@ public class MainSketch extends PApplet {
 
         minim = new Minim(this);
         // ai = minim.getLineIn(Minim.MONO, 1024, 44100, 16);
-        ap = minim.loadFile("M.O.O.N.mp3", 1024);
+        ap = minim.loadFile("./M.O.O.N.mp3", 1024);
         ab = ap.mix;
         ap.play();
 

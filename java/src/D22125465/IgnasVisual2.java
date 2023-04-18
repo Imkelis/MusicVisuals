@@ -21,7 +21,8 @@ public class IgnasVisual2 extends Visual {
     float count4 = 1;
     float count5 = 1;
     float acceleration = 0.05f;
-    float sun = 500;
+    float sun = 400;
+    float moon = -100;
 
     Minim minim;
     AudioPlayer aplayer;
@@ -96,6 +97,22 @@ public class IgnasVisual2 extends Visual {
             ellipse((halfWidth) + cos(sun) * 600f, halfHeight + sin(sun) * 300f, 250 + (abuffer.get(i) * 40f),
                     250 + (abuffer.get(i) * 40f));
 
+            fill(70, 0, 70);
+            ellipse((halfWidth) + cos(moon) * 600f, halfHeight + sin(moon) * 300f, 250 + (abuffer.get(i) * 40f),
+                    250 + (abuffer.get(i) * 40f));
+
+            fill(70, 0, 50);
+            ellipse((halfWidth) + cos(moon) * 600f, (halfHeight - 50) + sin(moon) * 300f, 50 + (abuffer.get(i) * 40f),
+                    50 + (abuffer.get(i) * 40f));
+
+            ellipse((halfWidth - 80) + cos(moon) * 600f, (halfHeight + 30) + sin(moon) * 300f,
+                    50 + (abuffer.get(i) * 40f),
+                    50 + (abuffer.get(i) * 40f));
+
+            ellipse((halfWidth + 25) + cos(moon) * 600f, (halfHeight + 50) + sin(moon) * 300f,
+                    50 + (abuffer.get(i) * 40f),
+                    50 + (abuffer.get(i) * 40f));
+
         }
 
         stroke(330, 100, 100);
@@ -133,6 +150,7 @@ public class IgnasVisual2 extends Visual {
         line(0, halfHeight - 40, width, halfHeight - 40);
         stroke(182, 31, 76);
         line(0, halfHeight - 44, width, halfHeight - 44);
+
         fill(24, 54, 11);
         rect(-5, halfHeight - 5, width + 5, halfHeight + 5);
 
@@ -182,5 +200,6 @@ public class IgnasVisual2 extends Visual {
         }
 
         sun += .003f;
+        moon += .003f;
     }
 }
