@@ -97,11 +97,11 @@ public class IgnasVisual2 extends Visual {
             ellipse((halfWidth) + cos(sun) * 600f, halfHeight + sin(sun) * 300f, 250 + (abuffer.get(i) * 40f),
                     250 + (abuffer.get(i) * 40f));
 
-            fill(70, 0, 70);
+            fill(213, 32, 36);
             ellipse((halfWidth) + cos(moon) * 600f, halfHeight + sin(moon) * 300f, 250 + (abuffer.get(i) * 40f),
                     250 + (abuffer.get(i) * 40f));
 
-            fill(70, 0, 50);
+            fill(213, 32, 25);
             ellipse((halfWidth) + cos(moon) * 600f, (halfHeight - 50) + sin(moon) * 300f, 50 + (abuffer.get(i) * 40f),
                     50 + (abuffer.get(i) * 40f));
 
@@ -128,28 +128,45 @@ public class IgnasVisual2 extends Visual {
         line(halfWidth, halfHeight, (float) width, halfHeight + halfHeight * 6f);
 
         strokeWeight(4);
-        stroke(167, 62, 87);
-        line(0, halfHeight - 4, width, halfHeight - 4);
-        stroke(0);
-        line(0, halfHeight - 8, width, halfHeight - 8);
-        stroke(167, 62, 87);
-        line(0, halfHeight - 12, width, halfHeight - 12);
-        stroke(0);
-        line(0, halfHeight - 16, width, halfHeight - 16);
-        stroke(172, 46, 79);
-        line(0, halfHeight - 20, width, halfHeight - 20);
-        stroke(0);
-        line(0, halfHeight - 24, width, halfHeight - 24);
-        stroke(172, 46, 79);
-        line(0, halfHeight - 28, width, halfHeight - 28);
-        stroke(0);
-        line(0, halfHeight - 32, width, halfHeight - 32);
-        stroke(182, 31, 76);
-        line(0, halfHeight - 36, width, halfHeight - 36);
-        stroke(0);
-        line(0, halfHeight - 40, width, halfHeight - 40);
-        stroke(182, 31, 76);
-        line(0, halfHeight - 44, width, halfHeight - 44);
+
+        int c = 0;
+
+        for (int i = 4; i <= 44; i = i + 4) {
+
+            if (c == 0) {
+                stroke(182, 31, 76);
+                c = 1;
+            } else if (c == 1) {
+                stroke(0);
+                c = 0;
+            }
+
+            line(0, halfHeight - i, width, halfHeight - i);
+
+        }
+
+        // stroke(167, 62, 87);
+        // line(0, halfHeight - 4, width, halfHeight - 4);
+        // stroke(0);
+        // line(0, halfHeight - 8, width, halfHeight - 8);
+        // stroke(167, 62, 87);
+        // line(0, halfHeight - 12, width, halfHeight - 12);
+        // stroke(0);
+        // line(0, halfHeight - 16, width, halfHeight - 16);
+        // stroke(172, 46, 79);
+        // line(0, halfHeight - 20, width, halfHeight - 20);
+        // stroke(0);
+        // line(0, halfHeight - 24, width, halfHeight - 24);
+        // stroke(172, 46, 79);
+        // line(0, halfHeight - 28, width, halfHeight - 28);
+        // stroke(0);
+        // line(0, halfHeight - 32, width, halfHeight - 32);
+        // stroke(182, 31, 76);
+        // line(0, halfHeight - 36, width, halfHeight - 36);
+        // stroke(0);
+        // line(0, halfHeight - 40, width, halfHeight - 40);
+        // stroke(182, 31, 76);
+        // line(0, halfHeight - 44, width, halfHeight - 44);
 
         fill(24, 54, 11);
         rect(-5, halfHeight - 5, width + 5, halfHeight + 5);
