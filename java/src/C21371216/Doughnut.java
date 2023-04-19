@@ -274,7 +274,7 @@ public class Doughnut extends PApplet {
                 bounce = 0;
             }
 
-            bounce += 0.1;
+            bounce += 0.2;
 
             widedoughnut(500, 850-((sin(bounce)/8)+0.875f)*400, 100, (sin(bounce)/8)+0.875f, 100, 20, 20);
 
