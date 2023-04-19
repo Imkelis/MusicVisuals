@@ -1,5 +1,6 @@
 package ie.tudublin;
 
+import C21371216.Doughnut;
 import D22125465.IgnasVisual1;
 import D22125465.IgnasVisual2;
 import example.CubeVisual;
@@ -23,8 +24,13 @@ public class Main {
 		processing.core.PApplet.runSketch(a, new IgnasVisual2());
 	}
 
+	public void Doughnut() {
+		String[] a = { "MAIN" };
+		processing.core.PApplet.runSketch(a, new Doughnut());
+	}
+
 	public static void main(String[] args) {
 		Main main = new Main();
-		main.ignasVisual1();
+		main.Doughnut();
 	}
 }
