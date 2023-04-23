@@ -104,7 +104,7 @@ public class Doughnut extends PApplet {
 		for(int i=0; i<detail; i++)
 		{
 			ang = (i/(detail))*TWO_PI;
-            strokeWeight(2);
+            strokeWeight(2f);
             stroke(ang*50,100,60);
 			slicedcircle(x,y,z+r2*sin(ang),r+r2*cos(ang),s);
 
