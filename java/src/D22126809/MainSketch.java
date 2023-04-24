@@ -9,7 +9,10 @@ import ddf.minim.analysis.FFT;
 import processing.core.PApplet;
 import processing.core.PVector;
 
-public class MainSketch extends PApplet {
+
+
+public class MainSketch extends PApplet
+{
 
     Minim minim;
     AudioPlayer ap;
@@ -24,6 +27,7 @@ public class MainSketch extends PApplet {
 
     }
 
+
     public void setup() {
         background(0);
         noFill();
@@ -33,7 +37,7 @@ public class MainSketch extends PApplet {
 
         minim = new Minim(this);
         // ai = minim.getLineIn(Minim.MONO, 1024, 44100, 16);
-        ap = minim.loadFile("./fadeaway.mp3", 1024);  
+        ap = minim.loadFile("fadeaway.mp3", 1024);
         ab = ap.mix;
         ap.play();
 
