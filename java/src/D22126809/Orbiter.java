@@ -30,6 +30,7 @@ public class Orbiter extends Star {
         }
     }
 
+    @Override
     public void changeColor(){
         p.colorMode(PConstants.HSB);
         int c =  p.color(PApplet.map(PApplet.constrain(highhats(), -1, 1), -1, 1, 0, 255), 255, 255);

@@ -46,10 +46,11 @@ public class MainSketch extends PApplet
 
         fft = new FFT(1024, 44100);
 
-        entities.add(new Celestial(10, new PVector((width / 2) - 300, height / 2), color(random(255), 255, 255), (int)random(3, 10000), this, fft));
-        entities.add(new Celestial(10, new PVector(width / 2, (height / 2) + 300), color(random(255), 255, 255), (int)random(3, 10000), this, fft));
-        entities.add(new Celestial(10, new PVector((width / 2) + 300, height / 2), color(random(255), 255, 255), (int)random(3, 10000), this, fft));
-        entities.add(new Celestial(10, new PVector(width / 2, (height / 2) - 300), color(random(255), 255, 255), (int)random(3, 10000), this, fft));
+        int size = 5;
+        entities.add(new Celestial(size, new PVector((width / 2) - 300, height / 2), color(random(255), 255, 255), (int)random(3, 10000), this, fft));
+        entities.add(new Celestial(size, new PVector(width / 2, (height / 2) + 300), color(random(255), 255, 255), (int)random(3, 10000), this, fft));
+        entities.add(new Celestial(size, new PVector((width / 2) + 300, height / 2), color(random(255), 255, 255), (int)random(3, 10000), this, fft));
+        entities.add(new Celestial(size, new PVector(width / 2, (height / 2) - 300), color(random(255), 255, 255), (int)random(3, 10000), this, fft));
 
         element = new CenterElement(this, fft);
         wave = new WaveForm(this, ab);
