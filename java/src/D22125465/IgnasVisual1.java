@@ -1,5 +1,6 @@
 package D22125465;
 
+import ie.tudublin.CombinedMain;
 import ie.tudublin.Visual;
 import processing.core.PApplet;
 import ddf.minim.AudioBuffer;
@@ -17,9 +18,9 @@ public class IgnasVisual1 extends Visual {
 
     PApplet parent;
 
-    public IgnasVisual1(PApplet parent) {
-        this.parent = parent;
-    }
+    // public IgnasVisual1(PApplet parent) {
+    //     this.parent = parent;
+    // }
 
     int Mode = 1;
     int color = 0;
@@ -29,9 +30,20 @@ public class IgnasVisual1 extends Visual {
     float lerpFFTbuffer[] = new float[2048];
 
     public void settings() {
+        // edit
+        size(displayWidth, displayHeight);
     }
 
     public void setup() {
+    }
+
+    // edit
+    public void keyPressed(){
+        if(key == '1'){
+            background(0);
+            CombinedMain.runSketch();
+            dispose();
+        }
     }
 
     public void draw(float[] lerpFFTbuffer, float[] lerpBuffer, AudioBuffer abuffer, FFT fft, float biggest) {

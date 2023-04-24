@@ -6,14 +6,12 @@ import ddf.minim.AudioBuffer;
 import ddf.minim.AudioPlayer;
 import ddf.minim.Minim;
 import ddf.minim.analysis.FFT;
+import ie.tudublin.CombinedMain;
 import processing.core.PApplet;
 import processing.core.PVector;
 
-
-
 public class MainSketch extends PApplet
 {
-
     Minim minim;
     AudioPlayer ap;
     AudioBuffer ab;
@@ -27,8 +25,8 @@ public class MainSketch extends PApplet
 
     }
 
-
     public void setup() {
+        super.setup();
         background(0);
         noFill();
         smooth();
@@ -56,15 +54,21 @@ public class MainSketch extends PApplet
     }
 
     public void keyPressed() {
-        if (ap.isPlaying()) {
-            ap.pause();
-        }
+        // if (ap.isPlaying()) {
+        //     ap.pause();
+        // }
 
-        else if (ap.position() == ap.length()) {
-            ap.rewind();
-            ap.play();
-        } else {
-            ap.play();
+        // else if (ap.position() == ap.length()) {
+        //     ap.rewind();
+        //     ap.play();
+        // } else {
+        //     ap.play();
+        // }
+
+        if(key == '2'){
+            background(0);
+            CombinedMain.runSketch2();
+            dispose();
         }
     }
 

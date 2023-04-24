@@ -13,7 +13,7 @@ public class test2 extends PApplet{
     
 
     public void settings(){
-        size(800, 800);
+        size(displayWidth, displayHeight);
     }
     
     public void setup() {
