@@ -45,7 +45,6 @@ public class MainSketch extends PApplet
         // ap.mute();
 
         fft = new FFT(1024, 44100);
-
         int size = 5;
         entities.add(new Celestial(size, new PVector((width / 2) - 300, height / 2), color(random(255), 255, 255), (int)random(3, 10000), this, fft));
         entities.add(new Celestial(size, new PVector(width / 2, (height / 2) + 300), color(random(255), 255, 255), (int)random(3, 10000), this, fft));
