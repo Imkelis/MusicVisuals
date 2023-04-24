@@ -19,6 +19,8 @@ public class IgnasVisual2 extends Visual {
     float lerpBuffer[] = new float[2048];
     float lerpFFTbuffer[] = new float[2048];
 
+    FallingLine[] fallingLines = new FallingLine[4];
+
     float speed = 0;
     float smallest = 10000;
     float count1 = 1;
@@ -26,9 +28,13 @@ public class IgnasVisual2 extends Visual {
     float count3 = 1;
     float count4 = 1;
     float count5 = 1;
-    float acceleration = 0.05f;
     float sun = 400;
-    float moon = -100;
+    int lock = 0;
+    float start;
+    long lastSpawnTime = 0;
+    int numActiveLines;
+
+    float position = 0;
 
     Minim minim;
     AudioPlayer aplayer;
@@ -37,17 +43,11 @@ public class IgnasVisual2 extends Visual {
     FFT fft;
 
     public void settings() {
-        // size(2048, 1000, P3D);
+
     }
 
     public void setup() {
-        // colorMode(HSB, 360, 100, 100);
-        // minim = new Minim(this);
-        // aplayer = minim.loadFile("M.O.O.N.mp3", 2048); // Temp Song, to be changed
-        // aplayer.play();
-        // abuffer = aplayer.mix;
 
-        // fft = new FFT(width, 44100);
     }
 
     public void draw(float[] lerpFFTbuffer, float[] lerpBuffer, AudioBuffer abuffer, FFT fft, float biggest) {
@@ -55,26 +55,8 @@ public class IgnasVisual2 extends Visual {
         float width = parent.width;
         float halfHeight = parent.height / 2;
         float halfWidth = parent.width / 2;
-        float total = 0;
-        // float biggest = 0;
         float average = 0;
-        float position = halfHeight;
         float o = 0;
-
-        // fft.forward(abuffer);
-
-        // for (int i = 0; i < abuffer.size(); i++) {
-        // lerpFFTbuffer[i] = lerp(lerpFFTbuffer[i], fft.getBand(i), 0.0005f);
-        // lerpBuffer[i] = lerp(lerpBuffer[i], abuffer.get(i), 0.005f);
-        // total += lerpBuffer[i];
-        // if (lerpBuffer[i] > biggest) {
-        // biggest = lerpBuffer[i];
-        // } // Biggest0.06844372
-        // if (lerpBuffer[i] < smallest) {
-        // smallest = lerpBuffer[i];
-        // } // smallest-0.06830386
-
-        // }
 
         parent.background(11, 100, 62);
         parent.noStroke();
@@ -101,25 +83,9 @@ public class IgnasVisual2 extends Visual {
             o += 40;
 
             parent.fill(47, 30, 77);
+
             parent.ellipse((halfWidth) + cos(sun) * 600f, halfHeight + sin(sun) * 300f, 250 + (abuffer.get(i) * 40f),
                     250 + (abuffer.get(i) * 40f));
-
-            parent.fill(213, 32, 36);
-            parent.ellipse((halfWidth) + cos(moon) * 600f, halfHeight + sin(moon) * 300f, 250 + (abuffer.get(i) * 40f),
-                    250 + (abuffer.get(i) * 40f));
-
-            parent.fill(213, 32, 25);
-            parent.ellipse((halfWidth) + cos(moon) * 600f, (halfHeight - 50) + sin(moon) * 300f,
-                    50 + (abuffer.get(i) * 40f),
-                    50 + (abuffer.get(i) * 40f));
-
-            parent.ellipse((halfWidth - 80) + cos(moon) * 600f, (halfHeight + 30) + sin(moon) * 300f,
-                    50 + (abuffer.get(i) * 40f),
-                    50 + (abuffer.get(i) * 40f));
-
-            parent.ellipse((halfWidth + 25) + cos(moon) * 600f, (halfHeight + 50) + sin(moon) * 300f,
-                    50 + (abuffer.get(i) * 40f),
-                    50 + (abuffer.get(i) * 40f));
 
         }
 
@@ -155,52 +121,43 @@ public class IgnasVisual2 extends Visual {
         parent.fill(24, 54, 11);
         parent.rect(-5, halfHeight - 5, width + 5, halfHeight + 5);
 
-        //// A whole lotta code for moving lines. Idk how to implement this any other
-        //// way. Ill try again later.
         parent.stroke(330, 100, 100);
 
-        parent.line(0, halfHeight + count1, width, halfHeight + count1);
-
-        count1 += (1f + (count1 * acceleration));
-
-        if (count1 > 122 || count2 > 1) {
-            parent.line(0, halfHeight + count2, width, halfHeight + count2);
-            count2 += (1f + (count2 * acceleration));
+        if (lock == 0) {
+            for (int i = 0; i < fallingLines.length; i++) {
+                start = 122 * i;
+                fallingLines[i] = new FallingLine(parent, 0.05f, biggest, start);
+            }
+            lastSpawnTime = millis();
+            lock++;
+            numActiveLines = 1;
         }
 
-        if (count2 > 122 || count3 > 1) {
-            parent.line(0, halfHeight + count3, width, halfHeight + count3);
-            count3 += (1f + (count3 * acceleration));
-        }
-        if (count3 > 122 || count4 > 1) {
-            parent.line(0, halfHeight + count4, width, halfHeight + count4);
-            count4 += (1f + (count4 * acceleration));
+        for (int i = 0; i < numActiveLines; i++) {
+            fallingLines[i].update();
         }
 
-        if (count4 > 122 || count5 > 1) {
-            parent.line(0, halfHeight + count5, width, halfHeight + count5);
-            count5 += (1f + (count5 * acceleration));
+        if (numActiveLines < fallingLines.length) {
+            if (millis() - lastSpawnTime >= 1000) {
+                numActiveLines++;
+                lastSpawnTime = millis();
+            }
         }
 
-        if (count1 > 500) {
-            count1 = 1;
+        if (sun > 402f) {
+            position = 1;
         }
 
-        if (count2 > 500) {
-            count2 = 1;
-        }
-        if (count3 > 500) {
-            count3 = 1;
-        }
-        if (count4 > 500) {
-            count4 = 1;
+        if (sun < 399f) {
+            position = 0;
         }
 
-        if (count5 > 500) {
-            count5 = 1;
+        if (position == 1) {
+            sun -= .0005f * (float) biggest * 180;
         }
 
-        sun += .003f;
-        moon += .003f;
+        if (position == 0) {
+            sun += .0005f * (float) biggest * 180;
+        }
     }
 }

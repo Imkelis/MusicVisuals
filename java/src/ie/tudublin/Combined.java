@@ -8,9 +8,8 @@ import ddf.minim.analysis.FFT;
 import processing.core.PApplet;
 import D22125465.IgnasVisual1;
 import D22125465.IgnasVisual2;
-import D22126809.*;
 
-public class Combined extends PApplet {
+public class Combined extends Visual {
     Minim minim;
     AudioPlayer aplayer;
     AudioInput ainput;
