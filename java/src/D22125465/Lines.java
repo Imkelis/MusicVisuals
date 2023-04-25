@@ -2,14 +2,14 @@ package D22125465;
 
 import processing.core.PApplet;
 
-class FallingLine extends PApplet {
+class Lines extends PApplet {
     PApplet parent;
     float count;
     float acceleration;
     float biggest;
     float start;
 
-    FallingLine(PApplet parent, float acceleration, float biggest, float start) {
+    Lines(PApplet parent, float acceleration, float biggest, float start) {
         this.start = start;
         this.parent = parent;
         this.acceleration = acceleration;

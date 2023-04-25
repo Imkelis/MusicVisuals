@@ -17,12 +17,11 @@ public class Combined extends Visual {
     FFT fft;
 
     // IgnasVisual1 IgnasV1 = new IgnasVisual1(this);
-    // IgnasVisual2 IgnasV2 = new IgnasVisual2(this);
+    IgnasVisual2 IgnasV2 = new IgnasVisual2(this);
 
     int Mode = 1;
     int color = 0;
     float spawns = 0;
-    float sun = 400;
     float moon = -100;
 
     float lerpBuffer[] = new float[2048];
@@ -41,11 +40,11 @@ public class Combined extends Visual {
     public void setup() {
         colorMode(HSB, 360, 100, 100);
         minim = new Minim(this);
-        aplayer = minim.loadFile("M.O.O.N.mp3", 2048); // Temp Song, to be changed
+        aplayer = minim.loadFile("M.O.O.N.mp3", 2048);
         aplayer.play();
         abuffer = aplayer.mix;
 
-        fft = new FFT(width, 44100);
+        fft = new FFT(2048, 44100);
 
     }
 
@@ -65,7 +64,9 @@ public class Combined extends Visual {
         switch (Mode) {
             case 1:
 
-                // IgnasV2.draw(lerpFFTbuffer, lerpBuffer, abuffer, fft, biggest);
+                System.out.println("Test");
+
+                IgnasV2.draw(lerpFFTbuffer, lerpBuffer, abuffer, fft, biggest);
 
                 break;
             case 2:
@@ -75,8 +76,10 @@ public class Combined extends Visual {
                 break;
 
             case 3:
-
-                break;
+                // background(0);
+                // CombinedMain.runSketch();
+                // dispose();
+                // break;
         }
 
     }
