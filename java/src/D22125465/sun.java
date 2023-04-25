@@ -12,7 +12,7 @@ public class sun extends PApplet {
     float halfHeight;
     float halfWidth;
     float speed;
-    float o = 0;
+    float o;
     float sun;
     float position;
 
@@ -37,6 +37,7 @@ public class sun extends PApplet {
             p.fill(330, 100, 100);
 
             p.rect(i + o, halfHeight - 44, 40, -fft.getBand(i) * 2f);
+
             o += 40;
 
             p.fill(47, 30, 77);
@@ -46,6 +47,7 @@ public class sun extends PApplet {
                     250 + (abuffer.get(i) * 40f));
 
         }
+        o = 0;
 
         if (this.sun > 402f) {
             this.position = 1;

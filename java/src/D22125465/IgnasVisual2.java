@@ -8,6 +8,9 @@ import ddf.minim.analysis.FFT;
 public class IgnasVisual2 extends Visual {
 
     PApplet parent;
+    float o;
+    float halfHeight;
+    float halfWidth;
 
     public IgnasVisual2(PApplet parent) {
         this.parent = parent;
@@ -28,6 +31,5 @@ public class IgnasVisual2 extends Visual {
 
         CoolBack.draw(lerpBuffer, fft, abuffer, biggest);
         fallingLines.Liney(biggest);
-
     }
 }
