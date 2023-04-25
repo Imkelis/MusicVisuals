@@ -18,9 +18,9 @@ public class IgnasVisual1 extends Visual {
 
     PApplet parent;
 
-    // public IgnasVisual1(PApplet parent) {
-    // this.parent = parent;
-    // }
+    public IgnasVisual1(PApplet parent) {
+        this.parent = parent;
+    }
 
     int Mode = 1;
     int color = 0;

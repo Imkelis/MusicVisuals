@@ -16,7 +16,7 @@ public class Combined extends Visual {
     AudioBuffer abuffer;
     FFT fft;
 
-    // IgnasVisual1 IgnasV1 = new IgnasVisual1(this);
+    IgnasVisual1 IgnasV1 = new IgnasVisual1(this);
     IgnasVisual2 IgnasV2 = new IgnasVisual2(this);
 
     int Mode = 1;
@@ -69,7 +69,7 @@ public class Combined extends Visual {
                 break;
             case 2:
 
-                // IgnasV1.draw(lerpFFTbuffer, lerpBuffer, abuffer, fft, biggest);
+                IgnasV1.draw(lerpFFTbuffer, lerpBuffer, abuffer, fft, biggest);
 
                 break;
 

@@ -22,13 +22,11 @@ public class IgnasVisual2 extends Visual {
             CoolBack = new BackgroundVisual(parent);
         }
 
-        CoolBack.draw(lerpBuffer, fft, abuffer, biggest);
-
         if (fallingLines == null) {
-
             fallingLines = new FallingLines(parent);
         }
 
+        CoolBack.draw(lerpBuffer, fft, abuffer, biggest);
         fallingLines.Liney(biggest);
 
     }
