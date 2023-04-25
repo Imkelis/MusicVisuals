@@ -15,7 +15,6 @@ public class Celestial extends Star {
     public Celestial(int size, PVector v, int color, int id, PApplet p, FFT fft) {
         super(size, v, color, id, p, fft);
         this.orbiters = new ArrayList<>();
-        // p.random(3, 12)
         for(int i = 1; i < 25; i++){
             int c = p.color(p.random(255), 255, p.random(255));
             orbiters.add(new Orbiter(10, new PVector(this.getV().x, this.getV().y), c, (int)p.random(1, 1000), p, fft));
@@ -26,6 +25,7 @@ public class Celestial extends Star {
 
     @Override
     public void render() {
+        // System.out.println(calculateFFT());
         rotate(calculateFFT());
 
         for(Orbiter o: orbiters){
@@ -34,6 +34,8 @@ public class Celestial extends Star {
     }
 
     private void rotate(float amp){
+        amp = PApplet.lerp(amp, 200, 0.5f);
+
         p.strokeWeight(1);
         p.pushMatrix();
         p.fill(getColor());
@@ -42,18 +44,25 @@ public class Celestial extends Star {
         p.translate(getV().x, getV().y);
         p.rotate((float) (p.frameCount * velocity));
         
-        double increase = Math.sqrt(Double.parseDouble(String.valueOf(amp)));
-        p.rect(0, 0, (float)increase + getSize(), (float)increase + getSize());
+        // double increase = Math.sqrt(Double.parseDouble(String.valueOf(amp)));
+        p.rect(0, 0, amp, amp );
         p.popMatrix();
     }
 
     @Override
     public float calculateFFT() {
-        float amp = 0;
+        float max = Float.MAX_VALUE;
         for(int i = 0; i < fft.specSize() / 2; i++){
             lerpedBuffer[i] = PApplet.lerp(lerpedBuffer[i], fft.getBand(i), 0.07f);
-            amp += lerpedBuffer[i];
+            if(lerpedBuffer[i] < max){
+                max = lerpedBuffer[i];
+            }
         }
-        return amp;
+        return max;
+    }
+
+    @Override
+    public void changeColor() {
+        System.out.println(calculateFFT());
     }
 }

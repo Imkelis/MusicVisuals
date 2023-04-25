@@ -6,11 +6,12 @@ import ddf.minim.AudioBuffer;
 import ddf.minim.AudioPlayer;
 import ddf.minim.Minim;
 import ddf.minim.analysis.FFT;
+import ie.tudublin.CombinedMain;
 import processing.core.PApplet;
 import processing.core.PVector;
 
-public class MainSketch extends PApplet {
-
+public class MainSketch extends PApplet
+{
     Minim minim;
     AudioPlayer ap;
     AudioBuffer ab;
@@ -25,6 +26,7 @@ public class MainSketch extends PApplet {
     }
 
     public void setup() {
+        super.setup();
         background(0);
         noFill();
         smooth();
@@ -33,7 +35,7 @@ public class MainSketch extends PApplet {
 
         minim = new Minim(this);
         // ai = minim.getLineIn(Minim.MONO, 1024, 44100, 16);
-        ap = minim.loadFile("./M.O.O.N.mp3", 1024);
+        ap = minim.loadFile("fadeaway.mp3", 1024);
         ab = ap.mix;
         ap.play();
 
@@ -41,38 +43,32 @@ public class MainSketch extends PApplet {
         // ap.mute();
 
         fft = new FFT(1024, 44100);
-
-        int gap = 100;
-        int count;
-        for (int w = gap; w < width - gap; w += gap) {
-            count = 0;
-            for (int h = gap; h < height - gap; h += gap) {
-                if (random(0f, 1f) > .6f && count < 3) {
-                    entities.add(new Celestial(10, new PVector(w, h), color(random(255), random(255), random(255)),
-                            (int) random(2, 1000), this, fft));
-                    count++;
-                }
-            }
-        }
-
-        // TEST
-        // entities.add(new Celestial(10, new PVector(width / 2, height / 2),
-        // color(random(255), 255, 255), 3, this));
+        int size = 5;
+        entities.add(new Celestial(size, new PVector((width / 2) - 300, height / 2), color(random(255), 255, 255), (int)random(3, 10000), this, fft));
+        entities.add(new Celestial(size, new PVector(width / 2, (height / 2) + 300), color(random(255), 255, 255), (int)random(3, 10000), this, fft));
+        entities.add(new Celestial(size, new PVector((width / 2) + 300, height / 2), color(random(255), 255, 255), (int)random(3, 10000), this, fft));
+        entities.add(new Celestial(size, new PVector(width / 2, (height / 2) - 300), color(random(255), 255, 255), (int)random(3, 10000), this, fft));
 
         element = new CenterElement(this, fft);
         wave = new WaveForm(this, ab);
     }
 
     public void keyPressed() {
-        if (ap.isPlaying()) {
-            ap.pause();
-        }
+        // if (ap.isPlaying()) {
+        //     ap.pause();
+        // }
 
-        else if (ap.position() == ap.length()) {
-            ap.rewind();
-            ap.play();
-        } else {
-            ap.play();
+        // else if (ap.position() == ap.length()) {
+        //     ap.rewind();
+        //     ap.play();
+        // } else {
+        //     ap.play();
+        // }
+
+        if(key == '2'){
+            background(0);
+            CombinedMain.runSketch2();
+            dispose();
         }
     }
 
