@@ -46,6 +46,7 @@ public class Combined extends Visual {
         abuffer = aplayer.mix;
 
         fft = new FFT(width, 44100);
+
     }
 
     public void draw() {
