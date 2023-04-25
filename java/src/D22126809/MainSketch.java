@@ -20,7 +20,7 @@ public class MainSketch extends PApplet {
     ArrayList<Star> entities = new ArrayList<>();
 
     public void settings() {
-        size(displayWidth, displayHeight, P3D);
+        size(displayWidth, displayHeight);
 
     }
 

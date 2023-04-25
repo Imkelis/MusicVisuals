@@ -64,8 +64,6 @@ public class Combined extends Visual {
         switch (Mode) {
             case 1:
 
-                System.out.println("Test");
-
                 IgnasV2.draw(lerpFFTbuffer, lerpBuffer, abuffer, fft, biggest);
 
                 break;
