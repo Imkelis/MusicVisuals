@@ -1,5 +1,6 @@
 package D22126809;
 
+import ie.tudublin.CombinedMain;
 import processing.core.PApplet;
 
 public class test2 extends PApplet{
@@ -38,6 +39,26 @@ public void draw() {
       }
     }
   }
+  
+  public void keyPressed() {
+    // if (ap.isPlaying()) {
+    //     ap.pause();
+    // }
+
+    // else if (ap.position() == ap.length()) {
+    //     ap.rewind();
+    //     ap.play();
+    // } else {
+    //     ap.play();
+    // }
+
+    System.out.println("hello");
+    if(key == '2'){
+        background(0);
+        CombinedMain.runSketch();
+        dispose();
+    }
+}
   
   void drawFlower(float x, float y) {
     pushMatrix();

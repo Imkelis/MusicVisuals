@@ -10,6 +10,7 @@ import ie.tudublin.CombinedMain;
 import processing.core.PApplet;
 import processing.core.PVector;
 
+
 public class MainSketch extends PApplet
 {
     Minim minim;
@@ -20,6 +21,8 @@ public class MainSketch extends PApplet
     WaveForm wave;
     ArrayList<Star> entities = new ArrayList<>();
 
+    //test
+    testing test;
     public void settings() {
         size(displayWidth, displayHeight);
 
@@ -51,6 +54,7 @@ public class MainSketch extends PApplet
 
         element = new CenterElement(this, fft);
         wave = new WaveForm(this, ab);
+
     }
 
     public void keyPressed() {
@@ -70,16 +74,19 @@ public class MainSketch extends PApplet
             CombinedMain.runSketch2();
             dispose();
         }
+
+        if(key == '3'){
+            size(1440, 900, "processing.opengl.PGraphics3D");
+        }
     }
 
     public void draw() {
         background(0);
         fft.forward(ab);
 
-        for (Star s : entities) {
-            s.render();
-        }
+        for (Star s : entities) { s.render(); }
         element.render();
         wave.render();
+
     }
 }
