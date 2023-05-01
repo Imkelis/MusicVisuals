@@ -19,6 +19,7 @@ public class Doughnut extends PApplet {
 	FFT fft;
 
 	float currentVolume;
+    
 	int seg = 8; //bands of frequency
 	float[] bands = new float[seg];
 
@@ -49,13 +50,11 @@ public class Doughnut extends PApplet {
 	/*public void keyPressed() {
 		
 		println(mode);
-	}*/
-
-
+	
 	public void mouseClicked()
 	{
 		
-	}
+	}}*/
 
 	float m = 0;
 	float ang = 0;
@@ -76,17 +75,16 @@ public class Doughnut extends PApplet {
     int trans = -4500;
     
     
-	public void pillar(float x,float y,float z, float r, float h, float detail) //coords of base
+	public void pillar(float x,float y,float z, float r, float h, float detail) //x,y,z coords of base
 	{
 		for(i=0;i<detail;i++)
 		{
-			
 			ang = (i/(detail))*TWO_PI;
 			x2 = x+r*sin(ang);
-			y2 = y + (-x2/8+600);
 			z2 = z+r*cos(ang) + 200*sin(x2/100);
 			stroke(x2%300, 100, 100);
-			line(x2, y2, z2, x2, y2-h-(15*cos(x2/15)), z2);
+			line(x2, y, z2, x2, y-h-(15*cos(x2/15)), z2);
+            line(x2, -320, z2, x2, -320+h+(15*cos(x2/15)), z2);
 		}
 	}
 
@@ -140,7 +138,7 @@ public class Doughnut extends PApplet {
 		{
 			ang = (i/(detail))*TWO_PI;
             strokeWeight(8*currentVolume+1);
-            stroke(ang*50,100,60);
+            stroke((300*(ang/TWO_PI)),100,60);
 			slicedcircle(x,y,z+r2*sin(ang),r+r2*cos(ang),s);
 		}
 	}
@@ -201,16 +199,20 @@ public class Doughnut extends PApplet {
 			// get current volume level
 			currentVolume = aplayer.mix.level();
 
-			/*  display volume level
+			  //display volume level
 			textSize(32);
 			text("Current Volume: " + currentVolume, 50, 250);
-			text("Translate : " + trans, 0-trans, 350);*/
+			text("Translate : " + trans, 0-trans, 350);
 
 			
 			
-			for(p=0;p<seg;p++)
+			
+            for(p=0;p<seg;p++)
 			{
-				pillar((700-trans)+200*p, 1400, 0, 50, 600+250*bands[p], 20);
+				if(((700-trans)+200*p)>1600){
+                    pillar((700-trans)+200*p, 1400, 0, 50, 600+250*bands[p], 20);
+
+                }      
 			}
 				
             

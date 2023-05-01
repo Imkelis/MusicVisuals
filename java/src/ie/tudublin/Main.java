@@ -5,12 +5,13 @@ import D22125465.IgnasVisual2;
 import example.CubeVisual;
 import example.MyVisual;
 import example.RotatingAudioBands;
+import C21371216.Doughnut;
 
 public class Main {
 
 	public void Combo() {
 		String[] a = { "MAIN" };
-		processing.core.PApplet.runSketch(a, new Combined());
+		processing.core.PApplet.runSketch(a, new Doughnut());
 	}
 
 	public static void main(String[] args) {
