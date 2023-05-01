@@ -19,9 +19,12 @@ public class Doughnut extends PApplet {
 	FFT fft;
 
 	float currentVolume;
+    float previousVolume;
     
 	int seg = 8; //bands of frequency
 	float[] bands = new float[seg];
+    float[] prevbands = new float[seg];
+    float[] lerpbands = new float[seg];
 
 
 	public void settings() {
@@ -38,7 +41,7 @@ public class Doughnut extends PApplet {
 
 		fft = new FFT(aplayer.bufferSize(), aplayer.sampleRate());
 		
-
+        
 
         for(i=0;i<20;i++) //initialising array for connecting circles animation
 		{
@@ -88,14 +91,11 @@ public class Doughnut extends PApplet {
 		}
 	}
 
-    
-
 	public void circ3d(float x,float y,float z, float r) //circle
 	{
 		bezier(x, y-r, z, x+(4/3f)*r, y-r, z, x+(4/3f)*r, y+r, z, x, y+r, z);//right
 		bezier(x, y-r, z, x-(4/3f)*r, y-r, z, x-(4/3f)*r, y+r, z, x, y+r, z);//left
 	}
-
 
 	public void doughnut(float x, float y, float z, float r, float r2, float detail)
 	{
@@ -124,13 +124,11 @@ public class Doughnut extends PApplet {
 		}
 	}
 
-
     public void slicedcircle(float x,float y,float z, float r, float s) //s = percent sliced (0 normal, 1 sliced)
 	{
 		bezier(x+(4*s/3f)*r, y-r, z, x+(4/3f)*r, y-r, z, x+(4/3f)*r, y+r, z, x+(4*s/3f)*r, y+r, z);//right
 		bezier(x-(4*s/3f)*r, y-r, z, x-(4/3f)*r, y-r, z, x-(4/3f)*r, y+r, z, x-(4*s/3f)*r, y+r, z);//left
 	}
-
 
 	public void slicedoughnut(float x, float y, float z, float s, float r, float r2, float detail)
 	{
@@ -151,6 +149,8 @@ public class Doughnut extends PApplet {
 		translate(trans, 0);
 		trans += speed;
 		//noStroke();
+
+        float lerpedVolume = lerp(previousVolume,currentVolume,0.08f);
 
 		if (keyPressed) {
 			if (keyCode == LEFT) {
@@ -183,6 +183,10 @@ public class Doughnut extends PApplet {
 				float avg = sum / freqStep;
 				
 				bands[i] = avg;
+
+                lerpbands[i] = lerp(prevbands[i],bands[i],0.3f);
+                
+                prevbands[i] = lerpbands[i];
 				
 				/*  testing visual
 				rect(-200+(100*i),300-(bands[i]*300),50,bands[i]*300);*/
@@ -210,7 +214,7 @@ public class Doughnut extends PApplet {
             for(p=0;p<seg;p++)
 			{
 				if(((700-trans)+200*p)>1600){
-                    pillar((700-trans)+200*p, 1400, 0, 50, 600+250*bands[p], 20);
+                    pillar((700-trans)+200*p, 1400, 0, 50, 600+250*lerpbands[p], 20);
 
                 }      
 			}
@@ -230,7 +234,6 @@ public class Doughnut extends PApplet {
             if(array[0]<-220){
                 for(j=0;j<20;j++){
                     array[j] = j*20-200;
-                    
                 }
             }
 
@@ -238,12 +241,16 @@ public class Doughnut extends PApplet {
                 bounce = 0;
             }
 
-            bounce += 0.2;
+            
 
-            widedoughnut(500, 850-((sin(bounce)/8)+0.875f)*400, 100, (sin(bounce)/8)+0.875f, 100, 20, 40);//right
-			widedoughnut(-600, 850-((currentVolume/8)+0.875f)*400, 100, (currentVolume/8)+0.875f, 100, 20, 50);//middle
-			widedoughnut(-1700, 850-((sin(bounce)/8)+0.875f)*400, 100, (sin(bounce)/8)+0.875f, 100, 20, 30);//left
+            widedoughnut(500, 850-((lerpedVolume/1)+0.5f)*400, 100, (lerpedVolume/1)+0.5f, 100, 20, 40);//right
+            widedoughnut(-600, 850-((lerpedVolume*1.2f)+0.5f)*400, 100, (lerpedVolume*1.2f)+0.5f, 100, 20, 50);//middle
+			widedoughnut(-1700, 850-((lerpedVolume/1)+0.5f)*400, 100, (lerpedVolume/1)+0.5f, 100, 20, 50);//left
+            
+			//bounce += 0.2;
+            //widedoughnut(-1700, 850-((sin(bounce)/8)+0.875f)*400, 100, (sin(bounce)/8)+0.875f, 100, 20, 30);//left
                 
+            previousVolume = lerpedVolume;
 
 			default:
 				break;
