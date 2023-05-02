@@ -18,9 +18,9 @@ public class IgnasVisual1 extends Visual {
 
     PApplet parent;
 
-    // public IgnasVisual1(PApplet parent) {
-    //     this.parent = parent;
-    // }
+    public IgnasVisual1(PApplet parent) {
+        this.parent = parent;
+    }
 
     int Mode = 1;
     int color = 0;
@@ -38,8 +38,8 @@ public class IgnasVisual1 extends Visual {
     }
 
     // edit
-    public void keyPressed(){
-        if(key == '1'){
+    public void keyPressed() {
+        if (key == '3') {
             background(0);
             CombinedMain.runSketch();
             dispose();

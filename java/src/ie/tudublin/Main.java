@@ -1,6 +1,6 @@
 package ie.tudublin;
 
-import D22125465.IgnasVisual1;
+//import D22125465.IgnasVisual1;
 import D22125465.IgnasVisual2;
 import example.CubeVisual;
 import example.MyVisual;

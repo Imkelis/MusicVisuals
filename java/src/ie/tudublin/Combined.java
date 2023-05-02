@@ -8,22 +8,20 @@ import ddf.minim.analysis.FFT;
 import processing.core.PApplet;
 import D22125465.IgnasVisual1;
 import D22125465.IgnasVisual2;
-import D22126809.*;
 
-public class Combined extends PApplet {
+public class Combined extends Visual {
     Minim minim;
     AudioPlayer aplayer;
     AudioInput ainput;
     AudioBuffer abuffer;
     FFT fft;
 
-    // IgnasVisual1 IgnasV1 = new IgnasVisual1(this);
-    // IgnasVisual2 IgnasV2 = new IgnasVisual2(this);
+    IgnasVisual1 IgnasV1 = new IgnasVisual1(this);
+    IgnasVisual2 IgnasV2 = new IgnasVisual2(this);
 
     int Mode = 1;
     int color = 0;
     float spawns = 0;
-    float sun = 400;
     float moon = -100;
 
     float lerpBuffer[] = new float[2048];
@@ -42,11 +40,12 @@ public class Combined extends PApplet {
     public void setup() {
         colorMode(HSB, 360, 100, 100);
         minim = new Minim(this);
-        aplayer = minim.loadFile("M.O.O.N.mp3", 2048); // Temp Song, to be changed
+        aplayer = minim.loadFile("M.O.O.N.mp3", 2048);
         aplayer.play();
         abuffer = aplayer.mix;
 
-        fft = new FFT(width, 44100);
+        fft = new FFT(2048, 44100);
+
     }
 
     public void draw() {
@@ -65,18 +64,20 @@ public class Combined extends PApplet {
         switch (Mode) {
             case 1:
 
-                // IgnasV2.draw(lerpFFTbuffer, lerpBuffer, abuffer, fft, biggest);
+                IgnasV2.draw(lerpFFTbuffer, lerpBuffer, abuffer, fft, biggest);
 
                 break;
             case 2:
 
-                // IgnasV1.draw(lerpFFTbuffer, lerpBuffer, abuffer, fft, biggest);
+                IgnasV1.draw(lerpFFTbuffer, lerpBuffer, abuffer, fft, biggest);
 
                 break;
 
             case 3:
-
-                break;
+                // background(0);
+                // CombinedMain.runSketch();
+                // dispose();
+                // break;
         }
 
     }
