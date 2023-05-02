@@ -18,13 +18,13 @@ public class MainSketch extends PApplet
     CenterElement element;
     WaveForm wave;
     ArrayList<Star> entities = new ArrayList<>();
+
     public void settings() {
         size(displayWidth, displayHeight);
 
     }
 
     public void setup() {
-        super.setup();
         background(0);
         noFill();
         smooth();
@@ -32,7 +32,6 @@ public class MainSketch extends PApplet
         colorMode(RGB);
 
         minim = new Minim(this);
-        // ai = minim.getLineIn(Minim.MONO, 1024, 44100, 16);
         ap = minim.loadFile("fadeaway.mp3", 1024);
         ab = ap.mix;
         ap.play();

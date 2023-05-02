@@ -26,14 +26,14 @@ public class Orbiter extends Star {
     public void render() {
         orbit();
         if(p.frameCount % 5 == 0){
-          changeColor();
+          changeColor(highhats());
         }
     }
 
     @Override
-    public void changeColor(){
+    public void changeColor(float v){
         p.colorMode(PConstants.HSB);
-        int c =  p.color(PApplet.map(PApplet.constrain(highhats(), -1, 1), -1, 1, 0, 255), 255, 255);
+        int c =  p.color(PApplet.map(PApplet.constrain(v, -1, 1), -1, 1, 0, 255), 255, 255);
         setColor(c);
         p.colorMode(PConstants.RGB);
     }

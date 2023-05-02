@@ -7,7 +7,7 @@ import processing.core.PVector;
 interface actions{
     public void render();
     public float calculateFFT();
-    public void changeColor();
+    public void changeColor(float v);
 }
 
 public abstract class Star implements actions{

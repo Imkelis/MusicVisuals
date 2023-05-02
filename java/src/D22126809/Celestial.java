@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import ddf.minim.analysis.FFT;
 import processing.core.PApplet;
+import processing.core.PConstants;
 import processing.core.PVector;
 
 public class Celestial extends Star {
@@ -25,26 +26,31 @@ public class Celestial extends Star {
 
     @Override
     public void render() {
-        // System.out.println(calculateFFT());
-        rotate(calculateFFT());
+        float v = calculateFFT();
+        rotate(v);
+        changeColor(v);
 
         for(Orbiter o: orbiters){
             o.render();
         }
+
+        // Draw the triangle in the center of the circle
+        int s = 10;
+        p.beginShape();
+        p.vertex(getV().x, getV().y - s);  // Top vertex of the triangle
+        p.vertex(getV().x - s, getV().y + s);  // Bottom-left vertex of the triangle
+        p.vertex(getV().x + s, getV().y + s);  // Bottom-right vertex of the triangle
+        p.endShape();
     }
 
     private void rotate(float amp){
         amp = PApplet.lerp(amp, 200, 0.5f);
-
         p.strokeWeight(1);
         p.pushMatrix();
-        p.fill(getColor());
-        
+        p.fill(getColor()); 
         p.rectMode(PApplet.CENTER);
         p.translate(getV().x, getV().y);
         p.rotate((float) (p.frameCount * velocity));
-        
-        // double increase = Math.sqrt(Double.parseDouble(String.valueOf(amp)));
         p.rect(0, 0, amp, amp );
         p.popMatrix();
     }
@@ -62,7 +68,11 @@ public class Celestial extends Star {
     }
 
     @Override
-    public void changeColor() {
-        System.out.println(calculateFFT());
+    public void changeColor(float v){
+        p.colorMode(PConstants.HSB);
+        float x = PApplet.map(v, -1, 1, 0, 255);
+        int c =  p.color((int)PApplet.lerp(0, x, 0.9f), 255, 255);
+        setColor(c);
+        p.colorMode(PConstants.RGB);
     }
 }
