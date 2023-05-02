@@ -25,27 +25,27 @@ public class CenterElement {
     }
 
     public void outwardsSpikes(float amp){
-        p.colorMode(PConstants.HSB);
         p.strokeWeight(3);
         float scaleFactor = 2;
         float xCord, yCord, angle = 0;
 
-        for(int i = 0; i < fft.specSize(); i+=10){
+        for(int i = 0; i < fft.specSize() / 2; i+=10){
             angle = PApplet.radians(i);
 			xCord = getW() + PApplet.sin(angle) * (amp * scaleFactor);
 			yCord = getH() + PApplet.cos(angle) * (amp * scaleFactor);
-        
-            p.stroke(PApplet.map(i, 0, fft.specSize(), 0, 255), 255 ,255); 
-            p.line(getW(), getH(), xCord, yCord);
+
+            p.stroke(PApplet.map(i, 0, fft.specSize() / 2, 0, 255), 255 ,255); 
+            float lineStartX = getW() + PApplet.sin(angle) * ((getR() - 3) / 2);
+            float lineStartY = getH() + PApplet.cos(angle) * ((getR() - 3) / 2);
+            p.line(lineStartX, lineStartY, xCord, yCord);
+
+
         }
-
-
-        p.noStroke();
-        p.colorMode(PConstants.RGB);
-        
+        p.noStroke();        
     }
 
     public void drawOutterCircle(float amp){
+        p.colorMode(PConstants.RGB);
         p.noStroke();
         float mapped = PApplet.map(amp * 5, 0, fft.specSize(), 0, 255);
         int blue = p.color(0, 0, mapped);
@@ -58,10 +58,11 @@ public class CenterElement {
     }
 
     public void drawInnerCircle(){
-        p.fill(10, 0, 10);
+        p.fill(0);
         p.circle(w, h, getR() - 20);
         board.render();
         board.applyRules();
+        p.colorMode(PConstants.HSB);
     }
 
     public void render(){

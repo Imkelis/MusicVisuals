@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import ddf.minim.analysis.FFT;
 import processing.core.PApplet;
-import processing.core.PConstants;
 import processing.core.PVector;
 
 public class Celestial extends Star {
@@ -37,9 +36,9 @@ public class Celestial extends Star {
         // Draw the triangle in the center of the circle
         int s = 10;
         p.beginShape();
-        p.vertex(getV().x, getV().y - s);  // Top vertex of the triangle
-        p.vertex(getV().x - s, getV().y + s);  // Bottom-left vertex of the triangle
-        p.vertex(getV().x + s, getV().y + s);  // Bottom-right vertex of the triangle
+        p.vertex(getV().x, getV().y - s);  
+        p.vertex(getV().x - s, getV().y + s); 
+        p.vertex(getV().x + s, getV().y + s); 
         p.endShape();
     }
 
@@ -69,10 +68,8 @@ public class Celestial extends Star {
 
     @Override
     public void changeColor(float v){
-        p.colorMode(PConstants.HSB);
         float x = PApplet.map(v, -1, 1, 0, 255);
         int c =  p.color((int)PApplet.lerp(0, x, 0.9f), 255, 255);
         setColor(c);
-        p.colorMode(PConstants.RGB);
     }
 }

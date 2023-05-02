@@ -1,6 +1,7 @@
 package D22126809;
 
 import processing.core.PApplet;
+import processing.core.PConstants;
 
 public class LifeBoard  {
     boolean[][] board;
@@ -107,6 +108,7 @@ public class LifeBoard  {
 
     public void render()
     {
+        p.colorMode(PConstants.RGB);
         p.pushMatrix();
         p.translate(p.width / 2, p.height / 2);
         p.rotate(-(float) (p.frameCount * 0.01f));

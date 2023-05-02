@@ -2,7 +2,6 @@ package D22126809;
 
 import ddf.minim.AudioBuffer;
 import processing.core.PApplet;
-import processing.core.PConstants;
 import processing.core.PVector;
 
 enum waveLocation{
@@ -51,7 +50,7 @@ public class WaveForm {
 
             case RIGHT:
                 vector.y -= speed;
-                if(vector.y == (ab.size() * -1)){
+                if(vector.y < (ab.size() * -1)){
                     location = waveLocation.TOP;
                     vector.y = 0;
                 }
@@ -73,7 +72,6 @@ public class WaveForm {
         float xC = 0;
         float yC = 0;
         float color, amplitude, lerpedValue;
-        p.colorMode(PConstants.HSB);
         int j = 1;
         for(int i = 0 ; i < ab.size() ; i+=20)
         {
@@ -117,7 +115,6 @@ public class WaveForm {
             j++;
         }
         p.noStroke();
-        p.colorMode(PConstants.RGB);
     }
 
     public void waveTipShape(float x, float y, boolean changeShape){

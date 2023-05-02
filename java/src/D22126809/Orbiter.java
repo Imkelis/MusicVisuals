@@ -2,7 +2,6 @@ package D22126809;
 
 import ddf.minim.analysis.FFT;
 import processing.core.PApplet;
-import processing.core.PConstants;
 import processing.core.PVector;
 
 public class Orbiter extends Star {
@@ -32,10 +31,8 @@ public class Orbiter extends Star {
 
     @Override
     public void changeColor(float v){
-        p.colorMode(PConstants.HSB);
         int c =  p.color(PApplet.map(PApplet.constrain(v, -1, 1), -1, 1, 0, 255), 255, 255);
         setColor(c);
-        p.colorMode(PConstants.RGB);
     }
 
     @Override
