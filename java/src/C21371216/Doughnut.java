@@ -35,7 +35,7 @@ public class Doughnut extends PApplet {
     float ang = 0;
 	float x2 = 0;
 	float z2 = 0;
-	int speed = 3; // speed of camera
+	float speed = 2.4f; // speed of camera
     int transX = -4600; // camera position
     int j = 0;
     int i = 0;
