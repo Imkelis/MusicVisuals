@@ -43,13 +43,14 @@ public class Combined extends Visual {
     }
 
     public void settings() {
-        size(2048, 1000, P3D);
+        // size(2048, 1000, P3D);
+        size(displayWidth, displayHeight);
     }
 
     public void setup() {
-        colorMode(HSB);
+        colorMode(HSB, 360, 100, 100);
         minim = new Minim(this);
-        aplayer = minim.loadFile("M.O.O.N.mp3", 2048);
+        aplayer = minim.loadFile("fadeaway.mp3", 2048);
         aplayer.play();
         abuffer = aplayer.mix;
 

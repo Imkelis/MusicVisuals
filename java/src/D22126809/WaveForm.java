@@ -2,6 +2,7 @@ package D22126809;
 
 import ddf.minim.AudioBuffer;
 import processing.core.PApplet;
+import processing.core.PConstants;
 import processing.core.PVector;
 
 enum waveLocation{
@@ -24,8 +25,10 @@ public class WaveForm {
     }
 
     public void render(){
+        p.colorMode(PConstants.HSB, 255, 255, 255);   
         waveTransform();
         drawWave();
+        p.colorMode(PConstants.HSB, 360, 100, 100);   
 
     }
 

@@ -3,6 +3,7 @@ package D22126809;
 import java.util.ArrayList;
 import ddf.minim.analysis.FFT;
 import processing.core.PApplet;
+import processing.core.PConstants;
 import processing.core.PVector;
 
 public class Celestial extends Star {
@@ -23,6 +24,7 @@ public class Celestial extends Star {
     }
 
     public void render() {
+        p.colorMode(PConstants.HSB, 255, 255, 255);   
         float v = calculateFFT();
         rotate(v);
         changeColor(v);
@@ -33,6 +35,7 @@ public class Celestial extends Star {
 
         // Draw the triangle in the center of the circle
         drawTri(10);
+        p.colorMode(PConstants.HSB, 360, 100, 100);   
     }
 
 

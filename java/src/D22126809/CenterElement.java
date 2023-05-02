@@ -39,7 +39,7 @@ public class CenterElement {
             float lineStartY = getH() + PApplet.cos(angle) * ((getR() - 3) / 2);
             p.line(lineStartX, lineStartY, xCord, yCord);
         }
-        p.noStroke();        
+        p.noStroke();     
     }
 
     public void drawOutterCircle(float amp){
@@ -60,13 +60,14 @@ public class CenterElement {
         p.circle(w, h, getR() - 20);
         board.render();
         board.applyRules();
-        p.colorMode(PConstants.HSB);
     }
 
     public void render(){
+        p.colorMode(PConstants.HSB,255,255,255);
         outwardsSpikes(calculateHighestFreq());    
         drawOutterCircle(calculateHighestFreq()); 
         drawInnerCircle(); 
+        p.colorMode(PConstants.HSB, 360, 100, 100);   
     }
 
     public float calculateHighestFreq(){
