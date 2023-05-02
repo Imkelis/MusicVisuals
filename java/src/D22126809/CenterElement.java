@@ -26,7 +26,7 @@ public class CenterElement {
 
     public void outwardsSpikes(float amp){
         p.strokeWeight(3);
-        float scaleFactor = 2;
+        float scaleFactor = 1.2f;
         float xCord, yCord, angle = 0;
 
         for(int i = 0; i < fft.specSize() / 2; i+=10){
@@ -38,8 +38,6 @@ public class CenterElement {
             float lineStartX = getW() + PApplet.sin(angle) * ((getR() - 3) / 2);
             float lineStartY = getH() + PApplet.cos(angle) * ((getR() - 3) / 2);
             p.line(lineStartX, lineStartY, xCord, yCord);
-
-
         }
         p.noStroke();        
     }

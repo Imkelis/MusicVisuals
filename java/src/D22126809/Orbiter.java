@@ -21,12 +21,14 @@ public class Orbiter extends Star {
 
     }
 
+    
     @Override
-    public void render() {
+    public void render() {  
         orbit();
         if(p.frameCount % 5 == 0){
           changeColor(highhats());
         }
+      
     }
 
     @Override
@@ -100,7 +102,6 @@ public class Orbiter extends Star {
 
       }
       
-    
 
     public void orbit(){
         float amp = PApplet.map(PApplet.constrain(highhats(), -1, 1), -1, 1, 0, 50);

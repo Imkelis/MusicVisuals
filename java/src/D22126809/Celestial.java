@@ -1,7 +1,6 @@
 package D22126809;
 
 import java.util.ArrayList;
-
 import ddf.minim.analysis.FFT;
 import processing.core.PApplet;
 import processing.core.PVector;
@@ -23,24 +22,19 @@ public class Celestial extends Star {
         this.lerpedBuffer = new float[p.width];
     }
 
-    @Override
     public void render() {
         float v = calculateFFT();
         rotate(v);
         changeColor(v);
-
         for(Orbiter o: orbiters){
             o.render();
         }
 
+
         // Draw the triangle in the center of the circle
-        int s = 10;
-        p.beginShape();
-        p.vertex(getV().x, getV().y - s);  
-        p.vertex(getV().x - s, getV().y + s); 
-        p.vertex(getV().x + s, getV().y + s); 
-        p.endShape();
+        drawTri(10);
     }
+
 
     private void rotate(float amp){
         amp = PApplet.lerp(amp, 200, 0.5f);
@@ -52,9 +46,16 @@ public class Celestial extends Star {
         p.rotate((float) (p.frameCount * velocity));
         p.rect(0, 0, amp, amp );
         p.popMatrix();
+        p.rectMode(PApplet.CORNER);
+    }
+    private void drawTri(int s){
+        p.beginShape();
+        p.vertex(getV().x, getV().y - s);  
+        p.vertex(getV().x - s, getV().y + s); 
+        p.vertex(getV().x + s, getV().y + s); 
+        p.endShape();
     }
 
-    @Override
     public float calculateFFT() {
         float max = Float.MAX_VALUE;
         for(int i = 0; i < fft.specSize() / 2; i++){
@@ -66,7 +67,6 @@ public class Celestial extends Star {
         return max;
     }
 
-    @Override
     public void changeColor(float v){
         float x = PApplet.map(v, -1, 1, 0, 255);
         int c =  p.color((int)PApplet.lerp(0, x, 0.9f), 255, 255);

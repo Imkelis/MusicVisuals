@@ -4,13 +4,13 @@ import ddf.minim.analysis.FFT;
 import processing.core.PApplet;
 import processing.core.PVector;
 
-interface actions{
-    public void render();
-    public float calculateFFT();
-    public void changeColor(float v);
-}
+// interface actions{
+//     public void render();
+//     public float calculateFFT();
+//     public void changeColor(float v);
+// }
 
-public abstract class Star implements actions{
+public abstract class Star {
     private int size;
     private PVector v;
     private int color; 
@@ -27,6 +27,10 @@ public abstract class Star implements actions{
         this.p = p;
         this.fft = fft;
     }
+
+    public abstract void render();
+    public abstract float calculateFFT();
+    public abstract void changeColor(float v);
 
     // Getters and Setters
     public int getSize() {
