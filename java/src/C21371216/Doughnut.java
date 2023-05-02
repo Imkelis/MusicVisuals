@@ -15,6 +15,13 @@ public class Doughnut extends PApplet {
 	AudioBuffer abuffer;
 	FFT fft;
 
+    PApplet parent;
+
+    public Doughnut(PApplet parent) {
+        this.parent = parent;
+    }
+
+
 	float currentVolume;
     float previousVolume;
     
@@ -64,16 +71,16 @@ public class Doughnut extends PApplet {
 			ang = (i/(detail))*TWO_PI;
 			x2 = x+r*sin(ang);
 			z2 = z+r*cos(ang) + 200*sin(x2/100);
-			stroke(x2%300, 100, 100);
-			line(x2, y, z2, x2, y-h-(15*cos(x2/15)), z2);  //lower pillar
-            line(x2, -320, z2, x2, -320+h+(15*cos(x2/15)), z2);  //upper pillar
+			parent.stroke(x2%360, 100, 100);
+			parent.line(x2, y, z2, x2, y-h-(15*cos(x2/15)), z2);  //lower pillar
+            parent.line(x2, -320, z2, x2, -320+h+(15*cos(x2/15)), z2);  //upper pillar
 		}
 	}
 
 	public void circ3d(float x,float y,float z, float r) //circle
 	{
-		bezier(x, y-r, z, x+(4/3f)*r, y-r, z, x+(4/3f)*r, y+r, z, x, y+r, z);//right
-		bezier(x, y-r, z, x-(4/3f)*r, y-r, z, x-(4/3f)*r, y+r, z, x, y+r, z);//left
+		parent.bezier(x, y-r, z, x+(4/3f)*r, y-r, z, x+(4/3f)*r, y+r, z, x, y+r, z);//right
+		parent.bezier(x, y-r, z, x-(4/3f)*r, y-r, z, x-(4/3f)*r, y+r, z, x, y+r, z);//left
 	}
 
 	public void doughnut(float x, float y, float z, float r, float r2, float detail) //repeated circles to make doughnut
@@ -81,15 +88,15 @@ public class Doughnut extends PApplet {
 		for(int i=0; i<detail; i++)  
 		{
 			ang = (i/(detail))*TWO_PI;
-            stroke(ang*50,100,100);
+            parent.stroke(ang*60,100,100);
 			circ3d(x,y,r2*sin(ang),r+r2*cos(ang));
 		}
 	}
 
     public void widecircle(float x,float y,float z, float r,float h)//squashed circle , h = percent of height
 	{
-		bezier(x, y-r*h, z, x+(4/3f)*r, y-r*h, z, x+(4/3f)*r, y+r*h, z, x, y+r*h, z);//right
-		bezier(x, y-r*h, z, x-(4/3f)*r, y-r*h, z, x-(4/3f)*r, y+r*h, z, x, y+r*h, z);//left
+		parent.bezier(x, y-r*h, z, x+(4/3f)*r, y-r*h, z, x+(4/3f)*r, y+r*h, z, x, y+r*h, z);//right
+		parent.bezier(x, y-r*h, z, x-(4/3f)*r, y-r*h, z, x-(4/3f)*r, y+r*h, z, x, y+r*h, z);//left
 	}
 
     public void widedoughnut(float x, float y, float z, float h, float r, float r2, float detail)
@@ -97,16 +104,16 @@ public class Doughnut extends PApplet {
 		for(int i=0; i<detail; i++) //doughnut with widecircle
 		{
 			ang = (i/(detail))*TWO_PI;
-            stroke(abs(ang-TWO_PI)*47.75f,100,100);
-            strokeWeight(5);
+            parent.stroke(abs(ang-TWO_PI)*57.3f,100,100);
+            parent.strokeWeight(5);
 			widecircle(x,y,r2*sin(ang),r+r2*cos(ang),h);
 		}
 	}
 
     public void slicedcircle(float x,float y,float z, float r, float s) //s = percent sliced (0 normal, 1 sliced)
 	{
-		bezier(x+(4*s/3f)*r, y-r, z, x+(4/3f)*r, y-r, z, x+(4/3f)*r, y+r, z, x+(4*s/3f)*r, y+r, z);//right
-		bezier(x-(4*s/3f)*r, y-r, z, x-(4/3f)*r, y-r, z, x-(4/3f)*r, y+r, z, x-(4*s/3f)*r, y+r, z);//left
+		parent.bezier(x+(4*s/3f)*r, y-r, z, x+(4/3f)*r, y-r, z, x+(4/3f)*r, y+r, z, x+(4*s/3f)*r, y+r, z);//right
+		parent.bezier(x-(4*s/3f)*r, y-r, z, x-(4/3f)*r, y-r, z, x-(4/3f)*r, y+r, z, x-(4*s/3f)*r, y+r, z);//left
 	}
 
 	public void slicedoughnut(float x, float y, float z, float s, float r, float r2, float detail)
@@ -114,20 +121,20 @@ public class Doughnut extends PApplet {
 		for(int i=0; i<detail; i++)//doughnut with slicedcircle
 		{
 			ang = (i/(detail))*TWO_PI;
-            strokeWeight(8*currentVolume+1);
-            stroke((300*(ang/TWO_PI)),100,60);
+            parent.strokeWeight(8*currentVolume+1);
+            parent.stroke((360*(ang/TWO_PI)),100,60);
 			slicedcircle(x,y,z+r2*sin(ang),r+r2*cos(ang),s);
 		}
 	}
 
 
 
-	public void draw() {
-		background(0);
-        noFill();
+	public void draw(FFT fft, AudioPlayer aplayer/*int transX, float previousVolume, float[] prevbands, float lerpbands[]*/) {
+		parent.background(0);
+        parent.noFill();
 
         transX += speed; //scrolling sideways
-        translate(transX, 0);
+        parent.translate(transX, 0);
 
 		if (keyPressed) {
 			if (keyCode == LEFT) {
@@ -179,11 +186,11 @@ public class Doughnut extends PApplet {
         }
 
         
-        for(j=0;j<20;j++){    //incrementing array for sliced circles
+        for(j=0;j<20;j++){    //incrementing postition backwards for sliced circles
             array[j] += -1;
         }
 
-        if(array[0]<-220){     
+        if(array[0]<-220){   // when too far back reset position
             for(j=0;j<20;j++){
                 array[j] = j*20-200;
             }

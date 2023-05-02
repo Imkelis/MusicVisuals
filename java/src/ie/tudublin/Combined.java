@@ -8,6 +8,7 @@ import ddf.minim.analysis.FFT;
 import processing.core.PApplet;
 import D22125465.IgnasVisual1;
 import D22125465.IgnasVisual2;
+import C21371216.Doughnut;
 
 public class Combined extends Visual {
     Minim minim;
@@ -18,6 +19,7 @@ public class Combined extends Visual {
 
     IgnasVisual1 IgnasV1 = new IgnasVisual1(this);
     IgnasVisual2 IgnasV2 = new IgnasVisual2(this);
+    Doughnut Doughnut = new Doughnut(this);
 
     int Mode = 1;
     int color = 0;
@@ -35,6 +37,7 @@ public class Combined extends Visual {
 
     public void settings() {
         size(2048, 1000, P3D);
+        fullScreen(SPAN);
     }
 
     public void setup() {
@@ -74,10 +77,7 @@ public class Combined extends Visual {
                 break;
 
             case 3:
-                // background(0);
-                // CombinedMain.runSketch();
-                // dispose();
-                // break;
+                Doughnut.draw(fft, aplayer);/*transX, lerpBuffer, abuffer, fft, biggest*/
         }
 
     }
