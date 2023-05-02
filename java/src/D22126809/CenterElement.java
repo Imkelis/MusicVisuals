@@ -37,7 +37,10 @@ public class CenterElement {
             p.stroke(PApplet.map(i, 0, fft.specSize() / 2, 0, 255), 255 ,255); 
             float lineStartX = getW() + PApplet.sin(angle) * ((getR() - 3) / 2);
             float lineStartY = getH() + PApplet.cos(angle) * ((getR() - 3) / 2);
-            p.line(lineStartX, lineStartY, xCord, yCord);
+
+            if (PApplet.dist(getW(), getH(), xCord, yCord) > (getR() / 2) - 3) {
+                p.line(lineStartX, lineStartY, xCord, yCord);
+            }
         }
         p.noStroke();     
     }
@@ -56,6 +59,7 @@ public class CenterElement {
     }
 
     public void drawInnerCircle(){
+        p.colorMode(PConstants.RGB);
         p.fill(0);
         p.circle(w, h, getR() - 20);
         board.render();

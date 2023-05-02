@@ -39,7 +39,8 @@ public class WaveForm {
                 vector.y += speed;
                 if(vector.y >= p.height){   
                     vector.x = ab.size() * -1;
-                    vector.y = p.height - 100;
+                    // vector.y = p.height - 100;
+                    vector.y = p.height - 50;
                     location = waveLocation.BOTTOM;
                 } 
                 break;
