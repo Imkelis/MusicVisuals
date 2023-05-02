@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import D22125465.IgnasVisual1;
 import D22125465.IgnasVisual2;
 import D22126809.*;
+import C21371216.Doughnut;
 
 public class Combined extends Visual {
     Minim minim;
@@ -22,6 +23,7 @@ public class Combined extends Visual {
 
     IgnasVisual1 IgnasV1 = new IgnasVisual1(this);
     IgnasVisual2 IgnasV2 = new IgnasVisual2(this);
+    Doughnut Doughnut = new Doughnut(this);
 
     int Mode = 1; 
     int color = 0;
@@ -96,6 +98,11 @@ public class Combined extends Visual {
                 for (Star s : entities) { s.render(); }
                 element.render();
                 wave.render();
+                break;
+            
+            case 4:
+                Doughnut.draw(fft, aplayer);
+                break;
         }
 
     }
