@@ -12,6 +12,9 @@ Name & student Number:
 
 # Description of the assignment
 
+# Video
+[![YouTube](http://img.youtube.com/vi/HA9LgluDzpc/0.jpg)](https://www.youtube.com/watch?v=HA9LgluDzpc)
+
 # Instructions
 
 # How it works
