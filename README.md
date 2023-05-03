@@ -44,6 +44,14 @@ i.e., applying transformations to the coordinate system in order to fulfil the m
 waveform.
 
 #### What i learned
+Of course the primary aspect learned throughout the course of this project was the framework of
+Processing. I'm grateful to be introduced to this as i never heard of the framework prior to 
+starting this module. I believe its an excellent outlet for practicing creative programming.
+Another aspect that i've learned considerably more about since starting this project is git which
+i consider essential as I progress further. Regularly encountering problems while becoming 
+properly accustomed to git was very benefical because as time went on most of the problems 
+have been seen before and can be appropriately handled.
+
 
 # Markdown Tutorial
 
