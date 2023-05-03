@@ -68,10 +68,10 @@ There are functions for each shape and some of these are functions that call oth
 
 ```Java 
 public void circ3d(float x,float y,float z, float r) //circle 
-	{ 
-		parent.bezier(x, y-r, z, x+(4/3f)*r, y-r, z, x+(4/3f)*r, y+r, z, x, y+r, z);//right 
-		parent.bezier(x, y-r, z, x-(4/3f)*r, y-r, z, x-(4/3f)*r, y+r, z, x, y+r, z);//left 
-	} 
+{ 
+    parent.bezier(x, y-r, z, x+(4/3f)*r, y-r, z, x+(4/3f)*r, y+r, z, x, y+r, z);//right 
+    parent.bezier(x, y-r, z, x-(4/3f)*r, y-r, z, x-(4/3f)*r, y+r, z, x, y+r, z);//left 
+} 
  ``` 
 ```Java 
 public void doughnut(float x, float y, float z, float r, float r2, float detail) //repeated circles to make doughnut 
@@ -110,6 +110,7 @@ if(array[0]<-220){   // when too far back reset position
 The doughnut/torus shapes change in height and position in response to the audio to give the affect that they are bouncing. The lerp is used to smooth this movement.  
 
 ## What I am most proud of 
+.
 
 
 
