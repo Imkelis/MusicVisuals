@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import D22125465.IgnasVisual1;
 import D22125465.IgnasVisual2;
 import D22126809.*;
+import C21371216.Doughnut;
 
 public class Combined extends Visual {
     Minim minim;
@@ -22,6 +23,7 @@ public class Combined extends Visual {
 
     IgnasVisual1 IgnasV1 = new IgnasVisual1(this);
     IgnasVisual2 IgnasV2 = new IgnasVisual2(this);
+    Doughnut Doughnut = new Doughnut(this);
 
     int Mode = 1; 
     int color = 0;
@@ -40,10 +42,22 @@ public class Combined extends Visual {
         if (key >= '0' && key <= '9') {
             Mode = key - '0';
         }
+        else if(key == ' ' && aplayer.isPlaying()){
+            aplayer.pause();;
+        }
+        else if(key == 'r'){
+            aplayer.rewind();
+            lerpBuffer = new float[2048];
+        }
+        else if(key == ' '){
+            aplayer.play();
+        }
     }
 
+
     public void settings() {
-        size(2048, 1000, P3D);
+        //size(2048, 1000, P3D);   // For smaller screen
+        size(4096, 1500, P3D);        // for bigger screen
     }
 
     public void setup() {
@@ -96,6 +110,11 @@ public class Combined extends Visual {
                 for (Star s : entities) { s.render(); }
                 element.render();
                 wave.render();
+                break;
+            
+            case 4:
+                Doughnut.draw(fft, aplayer);
+                break;
         }
 
     }

@@ -1,31 +1,50 @@
 package D22125465;
 
-import processing.core.PApplet;
+import java.util.ArrayList;
 
-class Lines extends PApplet {
+import ddf.minim.AudioBuffer;
+import processing.core.*;
+
+public class Lines extends PApplet {
+
+    ArrayList<DropLines> lines;
     PApplet parent;
-    float count;
-    float acceleration;
-    float biggest;
-    float start;
+    int x = 0;
 
-    Lines(PApplet parent, float acceleration, float biggest, float start) {
-        this.start = start;
+    Lines(PApplet parent){
         this.parent = parent;
-        this.acceleration = acceleration;
-        this.biggest = biggest;
-        this.count = 1;
     }
 
-    void update() {
-        parent.stroke(330, 100, 100);
-        parent.line(0, (parent.height / 2) + this.start + this.count, parent.width,
-                (parent.height / 2) + start + this.count);
-        this.count += (1f + (this.count * (acceleration)));
+    public void draw(AudioBuffer abuffer, float[] lerpBuffer) {
 
-        if (this.count >= 500 - start) {
-            this.count = 1;
-            this.start = 0;
+        if(x == 0){
+        lines = new ArrayList<>();
+        lines.add(new DropLines(parent,lerpBuffer, parent.height / 2));
+        x++;
         }
+
+        for (DropLines line : lines) {
+            parent.strokeWeight(4);
+
+            parent.fill(24, 54, 11);
+            parent.rect(-5, parent.height/2, parent.width + 10, parent.height/2 + 5);
+
+
+            line.update();
+            line.display();
+            
+            
+        }
+
+        if(abuffer.get(0) != 0.0f){
+
+            
+        if (lines.get(lines.size() - 1).y > parent.height / 2) {
+            lines.add(new DropLines(parent, lerpBuffer, parent.height / 2 - 50));
+        }
+        if (lines.get(0).y > parent.height) {
+            lines.remove(0);
+        }
+    }
     }
 }
