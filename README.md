@@ -175,6 +175,8 @@ classes and objects to work before, but now I actually understand how they work 
 do it cause of memorisation. Now this is unrelated to java, but I think its related to the project; I feel like I also learned how to 
 be more creative in general.
 
+I also learned and got comfortable with using git and its various functionalities. This is the first project I have ever used it on, but I can now see why its so highly regarded.
+
 #### BackgroundVisual
 This was responsible for drawing the background. It sets the rectangles that act as a background, the lines that branch of the centre 
 of the screen, and it also calls on the sun object. I dont think the background could be drawn with a loop since I wanted a specific 
