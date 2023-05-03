@@ -17,7 +17,7 @@ Name & student Number:
 # How it works
 
 # List of classess/assets
-## D22126809
+### D22126809
 | Class/asset | Source |
 |-----------|-----------|
 |Celestial.java| Self written|
@@ -27,7 +27,15 @@ Name & student Number:
 |Star.java | Self written |
 |WaveForm.java | Self written |
 
+#### What i did
+I developed the visual that has the center circle with Conways Game of Life glider gun in it 
+along with the waveform that moves around the sketch. The visual also has other elements contained 
+in it including aspects refered to as Celestials and Orbiters that are used to depict high-hats in
+the given input audio. Additionally to represent the kick of the track outward lines leave the
+center element in according to the track.
 
+#### What i am most proud of
+#### What i learned
 
 # Markdown Tutorial
 
