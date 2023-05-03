@@ -2,6 +2,7 @@
 
 Name & student Number: 
 <br />Jordan Murray - D22126809
+<br />Tom Keane - C21371216
 
 ## Instructions
 - Fork this repository and use it a starter project for your assignment
@@ -56,13 +57,13 @@ properly accustomed to git was very benefical because as time went on most of th
 have been seen before and can be appropriately handled.
 
 
-
-## Description 
+## C21371216
+#### Doughnut.java
 
 The Doughnut.java class contains code for creating pillars, circles and torus shapes that respond to volume and frequency levels of the audio. While running it scrolls the view from right to left. It uses functions to create the shapes and a lerp buffer to smooth movements of the shapes. There are two different visuals, the first is moving pillars and the second has a bouncing torus shapes surrounded by circles changing in size and colour. 
 
  
-## How it works 
+### How it works 
 
 There are functions for each shape and some of these are functions that call other functions repeatedly to make a new shape. For example, a doughnut/torus shape is created with repeated circle functions. Here is a demonstration of both functions: 
 
@@ -109,9 +110,8 @@ if(array[0]<-220){   // when too far back reset position
 
 The doughnut/torus shapes change in height and position in response to the audio to give the affect that they are bouncing. The lerp is used to smooth this movement.  
 
-## What I am most proud of 
-.
-
+### What I am most proud of 
+The main thing I'm proud of is getting the bouncing animation on the doughnut shape working right.  It took some time to get the correct values for the movement and to get the lerp working smoothly. After a lot of trial and error I got it working properly and I'm happy with how it turned out.
 
 
 
