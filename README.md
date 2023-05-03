@@ -57,12 +57,12 @@ have been seen before and can be appropriately handled.
 
 
 
-##Description 
+## Description 
 
 The Doughnut.java class contains code for creating pillars, circles and torus shapes that respond to volume and frequency levels of the audio. While running it scrolls the view from right to left. It uses functions to create the shapes and a lerp buffer to smooth movements of the shapes. There are two different visuals, the first is moving pillars and the second has a bouncing torus shapes surrounded by circles changing in size and colour. 
 
  
-##How it works 
+## How it works 
 
 There are functions for each shape and some of these are functions that call other functions repeatedly to make a new shape. For example, a doughnut/torus shape is created with repeated circle functions. Here is a demonstration of both functions: 
 
@@ -73,16 +73,15 @@ public void circ3d(float x,float y,float z, float r) //circle
 		parent.bezier(x, y-r, z, x-(4/3f)*r, y-r, z, x-(4/3f)*r, y+r, z, x, y+r, z);//left 
 	} 
  ``` 
-
 ```Java 
-	public void doughnut(float x, float y, float z, float r, float r2, float detail) //repeated circles to make doughnut 
-	{ 
-		for(int i=0; i<detail; i++)   
-		{ 
-			ang = (i/(detail))*TWO_PI; 
-            			circ3d(x,y,r2*sin(ang),r+r2*cos(ang)); 
-		} 
-	} 
+public void doughnut(float x, float y, float z, float r, float r2, float detail) //repeated circles to make doughnut 
+{ 
+    for(int i=0; i<detail; i++)   
+    { 
+        ang = (i/(detail))*TWO_PI; 
+                    circ3d(x,y,r2*sin(ang),r+r2*cos(ang)); 
+    } 
+} 
 ``` 
 
 The view is scrolled right to left by incrementing the variable transX and using the variable speed to control the movement speed  
@@ -101,18 +100,19 @@ for(j=0;j<20;j++){    //incrementing postition backwards for sliced circles
             array[j] += -1; 
     } 
 
-    if(array[0]<-220){   // when too far back reset position 
-        for(j=0;j<20;j++){ 
-            array[j] = j*20-200; 
-        } 
+if(array[0]<-220){   // when too far back reset position 
+    for(j=0;j<20;j++){ 
+        array[j] = j*20-200; 
     } 
+} 
 ``` 
-
- 
 
 The doughnut/torus shapes change in height and position in response to the audio to give the affect that they are bouncing. The lerp is used to smooth this movement.  
 
-##What I am most proud of 
+## What I am most proud of 
+
+
+
 
 # Markdown Tutorial
 
