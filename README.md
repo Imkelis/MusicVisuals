@@ -1,8 +1,7 @@
 # Music Visualiser Project
 
-Name:
-
-Student Number: 
+Name & student Number: 
+Jordan Murray - D22126809
 
 ## Instructions
 - Fork this repository and use it a starter project for your assignment
@@ -17,7 +16,18 @@ Student Number:
 
 # How it works
 
-# What I am most proud of in the assignment
+# List of classess/assets
+## D22126809
+| Class/asset | Source |
+|-----------|-----------|
+|Celestial.java| Self written|
+|CenterElement.java | Self written |
+|LifeBoard.java | Modified class code |
+|Orbiter.java | Self written |
+|Star.java | Self written |
+|WaveForm.java | Self written |
+
+
 
 # Markdown Tutorial
 
