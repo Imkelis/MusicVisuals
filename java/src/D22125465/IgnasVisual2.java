@@ -17,7 +17,8 @@ public class IgnasVisual2 extends Visual {
     }
 
     BackgroundVisual CoolBack;
-    FallingLines fallingLines;
+    // FallingLines fallingLines;
+    Lines downLines;
 
     public void draw(float[] lerpFFTbuffer, float[] lerpBuffer, AudioBuffer abuffer, FFT fft, float biggest) {
 
@@ -25,11 +26,11 @@ public class IgnasVisual2 extends Visual {
             CoolBack = new BackgroundVisual(parent);
         }
 
-        if (fallingLines == null) {
-            fallingLines = new FallingLines(parent);
+        if (downLines == null) {
+            downLines = new Lines(parent);
         }
 
         CoolBack.draw(lerpBuffer, fft, abuffer, biggest);
-        fallingLines.Liney(biggest);
+        downLines.draw();
     }
 }
