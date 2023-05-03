@@ -6,16 +6,18 @@ class DropLines extends PApplet{
     float y;
     float speed;
     PApplet parent;
+    float lerpBoost;
 
-    DropLines(PApplet parent, float y) {
+    DropLines(PApplet parent, float[] lerpBuffer,float y) {
         this.y = y;
         this.speed = 0;
         this.parent = parent;
+        this.lerpBoost = abs(lerpBuffer[0]) * 11f;
     }
 
     void update() {
-        speed += 0.12;
-        y += speed;
+        speed += 0.09;
+        y += speed + lerpBoost;
     }
 
     void display() {

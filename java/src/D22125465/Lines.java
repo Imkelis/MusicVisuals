@@ -2,6 +2,7 @@ package D22125465;
 
 import java.util.ArrayList;
 
+import ddf.minim.AudioBuffer;
 import processing.core.*;
 
 public class Lines extends PApplet {
@@ -14,11 +15,11 @@ public class Lines extends PApplet {
         this.parent = parent;
     }
 
-    public void draw() {
+    public void draw(AudioBuffer abuffer, float[] lerpBuffer) {
 
         if(x == 0){
         lines = new ArrayList<>();
-        lines.add(new DropLines(parent, parent.height / 2));
+        lines.add(new DropLines(parent,lerpBuffer, parent.height / 2));
         x++;
         }
 
@@ -31,12 +32,19 @@ public class Lines extends PApplet {
 
             line.update();
             line.display();
+            
+            
         }
+
+        if(abuffer.get(0) != 0.0f){
+
+            
         if (lines.get(lines.size() - 1).y > parent.height / 2) {
-            lines.add(new DropLines(parent, parent.height / 2 - 50));
+            lines.add(new DropLines(parent, lerpBuffer, parent.height / 2 - 50));
         }
         if (lines.get(0).y > parent.height) {
             lines.remove(0);
         }
+    }
     }
 }

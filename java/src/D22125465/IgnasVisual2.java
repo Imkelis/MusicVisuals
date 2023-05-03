@@ -30,6 +30,6 @@ public class IgnasVisual2 extends Visual {
         }
 
         CoolBack.draw(lerpBuffer, fft, abuffer, biggest);
-        downLines.draw();
+        downLines.draw(abuffer, lerpBuffer);
     }
 }

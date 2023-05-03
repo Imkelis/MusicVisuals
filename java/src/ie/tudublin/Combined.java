@@ -42,6 +42,16 @@ public class Combined extends Visual {
         if (key >= '0' && key <= '9') {
             Mode = key - '0';
         }
+        else if(key == ' ' && aplayer.isPlaying()){
+            aplayer.pause();;
+        }
+        else if(key == 'r'){
+            aplayer.rewind();
+            lerpBuffer = new float[2048];
+        }
+        else if(key == ' '){
+            aplayer.play();
+        }
     }
 
 

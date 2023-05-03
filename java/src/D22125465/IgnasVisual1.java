@@ -92,14 +92,18 @@ public class IgnasVisual1 extends Visual {
             parent.box(2 * biggest * 1500);
             parent.box(biggest * 1500);
 
+            if(abuffer.get(0) != 0.0f){
             if (biggest > 0.025) {
                 color -= 5;
                 if (color < 0) {
                     color = abs(color) + 255;
                 }
             }
+        }
 
             parent.popMatrix();
+
+            if(abuffer.get(0) != 0.0f){
 
             if (biggest > 0.025) {
                 parent.pushMatrix();
@@ -107,6 +111,7 @@ public class IgnasVisual1 extends Visual {
                 parent.box(spawns);
                 parent.popMatrix();
             }
+        }
 
             spawns += biggest * 1000;
 
