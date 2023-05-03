@@ -19,15 +19,6 @@ Name & student Number:
 # Instructions
 
 # How it works
-### D22126809
-#### Waveform
-The waveform element of the visual works by keeping track of the position of the waveform as it traverses along the sides of the sketch. An enumerate types is used to keep track of its position i.e., LEFT, TOP etc. The waveform has a PVector attribute to keep track of its coordinates and every time the wave is rendered its position is transformed according to its coordinates.
-
-#### Centre Element
-The Game of Life Gosper Gun element in the centre of the circle only displays the cells that are alive within the domain of the circumference of the circle in which it inhabits. This is done by using the ‘fill()’ function to colour the cells that are alive within the circle and if the cells are out of bounds of the circle, then ‘noFill()’ is applied. The outer circle of the centre element that has the blue colouring is reactive to the input audio of the program in the sense that different shapes of blue are shown in accordance to the audio. The outer spikes that come out of the centre element are react to the kick of the input audio
-
-#### Celestial / Orbiters 
-The square objects either side of the centre element change colour in according with the input audio, they also change size slightly. These are small circles that orbit the celestial objects and each orbiter has its own rotation direction, either clockwise or anti-clockwise.
 
 
 # List of classess/assets
@@ -65,6 +56,15 @@ Another aspect that i've learned considerably more about since starting this pro
 i consider essential as I progress further. Regularly encountering problems while becoming 
 properly accustomed to git was very benefical because as time went on most of the problems 
 have been seen before and can be appropriately handled.
+
+#### Waveform
+The waveform element of the visual works by keeping track of the position of the waveform as it traverses along the sides of the sketch. An enumerate types is used to keep track of its position i.e., LEFT, TOP etc. The waveform has a PVector attribute to keep track of its coordinates and every time the wave is rendered its position is transformed according to its coordinates.
+
+#### Centre Element
+The Game of Life Gosper Gun element in the centre of the circle only displays the cells that are alive within the domain of the circumference of the circle in which it inhabits. This is done by using the ‘fill()’ function to colour the cells that are alive within the circle and if the cells are out of bounds of the circle, then ‘noFill()’ is applied. The outer circle of the centre element that has the blue colouring is reactive to the input audio of the program in the sense that different shapes of blue are shown in accordance to the audio. The outer spikes that come out of the centre element are react to the kick of the input audio
+
+#### Celestial / Orbiters 
+The square objects either side of the centre element change colour in according with the input audio, they also change size slightly. These are small circles that orbit the celestial objects and each orbiter has its own rotation direction, either clockwise or anti-clockwise.
 
 
 ## C21371216
