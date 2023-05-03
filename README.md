@@ -130,7 +130,7 @@ The main thing I'm proud of is getting the bouncing animation on the doughnut sh
 I learned a lot about java, processing and git doing this project. I expanded my knowledge on functions, classes and how to use multiple files in one program using java. I learned about the processing library and how to make shapes and visuals. This was my first time using github for a project so I learned a lot about how to use git bash and github and now I feel more confident with these programs.
 
 
-### D22125465 - Ignas Merkelis
+## D22125465 - Ignas Merkelis
 
 Class/Asset         	Source
 BackgroundVisial.java	Self Written
