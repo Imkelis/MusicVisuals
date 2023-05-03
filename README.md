@@ -23,6 +23,7 @@ Name & student Number:
 ![An image](images/S2.png)
 ![An image](images/S1.png)
 # Instructions
+While the program is running press 1,2,3,4 to switch between the visuals. You can pasue/play the visuals by pressing space and press r to rewind.
 
 # How it works
 
