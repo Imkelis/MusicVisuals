@@ -79,7 +79,7 @@ public void doughnut(float x, float y, float z, float r, float r2, float detail)
     for(int i=0; i<detail; i++)   
     { 
         ang = (i/(detail))*TWO_PI; 
-                    circ3d(x,y,r2*sin(ang),r+r2*cos(ang)); 
+        circ3d(x,y,r2*sin(ang),r+r2*cos(ang)); 
     } 
 } 
 ``` 
@@ -98,7 +98,7 @@ The position of the converging circles is stored in an array. When the circles m
 ```Java 
 for(j=0;j<20;j++){    //incrementing postition backwards for sliced circles 
             array[j] += -1; 
-    } 
+} 
 
 if(array[0]<-220){   // when too far back reset position 
     for(j=0;j<20;j++){ 
