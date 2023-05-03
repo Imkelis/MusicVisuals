@@ -84,6 +84,7 @@ public class IgnasVisual1 extends Visual {
                 parent.rotateX((sin(i) * 600) * Math.min((parent.millis() / 6000f * rotate), parent.millis() / 50f));
                 parent.rotateY(Math.min(parent.millis() / 6000f * rotate, parent.millis() / 50f));
 
+
             }
 
             parent.noFill();
@@ -115,7 +116,7 @@ public class IgnasVisual1 extends Visual {
 
             spawns += biggest * 1000;
 
-            if (spawns > 3000f) {
+            if (spawns > parent.width * 5) {
                 spawns = 0;
             }
         }
