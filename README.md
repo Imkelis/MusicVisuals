@@ -132,13 +132,14 @@ I learned a lot about java, processing and git doing this project. I expanded my
 
 ## D22125465 - Ignas Merkelis
 
-Class/Asset         	Source
-BackgroundVisial.java	Self Written
-DropLines.java         	Self Written
-IgnasVisual1.java      	Self Written but I was definitely eying down the example visuals when trying to figure out the 3d things, so I guess thats kinda a source.
-IgnasVisual2.java     	Self Written
-Lines.java          	Self Written
-sun.java	            Self Written
+|Class/Asset           | Source      |
+|----------------------|-------------|
+|BackgroundVisial.java | Self Written|
+|DropLines.java        | Self Written|
+|IgnasVisual1.java     | Self Written but I was definitely eying down the example visuals when trying to figure out the 3d things, so I guess thats kinda a source|
+|IgnasVisual2.java     | Self Written|
+|Lines.java            | Self Written|
+|sun.java	           | Self Written|
 
 #### What I did
 I developed two visuals for this project. IgnasVisual1 was the first visual I created; It consists 
