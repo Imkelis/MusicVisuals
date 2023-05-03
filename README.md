@@ -32,9 +32,17 @@ I developed the visual that has the center circle with Conways Game of Life glid
 along with the waveform that moves around the sketch. The visual also has other elements contained 
 in it including aspects refered to as Celestials and Orbiters that are used to depict high-hats in
 the given input audio. Additionally to represent the kick of the track outward lines leave the
-center element in according to the track.
+center element in according to the beat.
 
 #### What i am most proud of
+Overall, i'm generally proud with the outcome of the sketch that i done. There's much more that i
+would of loved to implement with the visual, but as it stands i believe theres some really cool
+things about it. I'm particulary proud of the waveform element of the visual sketch and its
+constant movement around the screen. When this was first being implemented early on in the project, 
+this aspect of the sketch is what mostly got me familiar with the transform function of processing
+i.e., applying transformations to the coordinate system in order to fulfil the movement of the
+waveform.
+
 #### What i learned
 
 # Markdown Tutorial
