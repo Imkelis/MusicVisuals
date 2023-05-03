@@ -3,22 +3,16 @@
 Name & student Number: 
 <br />Jordan Murray - D22126809
 <br />Tom Keane - C21371216
+<br />Ignas Merkelis - D22125465
 
-## Instructions
-- Fork this repository and use it a starter project for your assignment
-- Create a new package named your student number and put all your code in this package.
-- You should start by creating a subclass of ie.tudublin.Visual
-- There is an example visualiser called MyVisual in the example package
-- Check out the WaveForm and AudioBandsVisual for examples of how to call the Processing functions from other classes that are not subclasses of PApplet
-
-# Description of the assignment
+#
+Group 856
 
 # Video
 [![YouTube](http://img.youtube.com/vi/HA9LgluDzpc/0.jpg)](https://www.youtube.com/watch?v=HA9LgluDzpc)
 
 # Instructions
-
-# How it works
+You can click numbers 1-4 to change visuals, spacebar to pause music, and r to reset the song.
 
 
 # List of classess/assets
@@ -124,223 +118,146 @@ The doughnut/torus shapes change in height and position in response to the audio
 The main thing I'm proud of is getting the bouncing animation on the doughnut shape working right.  It took some time to get the correct values for the movement and to get the lerp working smoothly. After a lot of trial and error I got it working properly and I'm happy with how it turned out.
 
 
+##### D22125465 - Ignas Merkelis
 
-# Markdown Tutorial
+Class/Asset         	Source
+BackgroundVisial.java	Self Written
+DropLines.java         	Self Written
+IgnasVisual1.java      	Self Written but I was definitely eying down the example visuals when trying to figure out the 3d things, so I guess thats kinda a source.
+IgnasVisual2.java     	Self Written
+Lines.java          	Self Written
+sun.java	            Self Written
 
-This is *emphasis*
+#### What I did
+I developed two visuals for this project. IgnasVisual1 was the first visual I created; It consists 
+of 5 cubes, 4 on the corners and 1 in the middle, and they react to the music my rotating, changing 
+size's, and changing colors. I started creating this visual when I was still uncomfortable with 
+java, and even though I'm still definetly not a pro, it definetly did help me improve my understanding 
+of the java language. After my learning experience with the first visual, I decided to create another one! 
+I remembered a game that I really enjoyed a few years ago, and after getting a boost in motivation, I decided 
+to create a visual inspired by it. The game where I got inspiration for IgnasVisial2 is called 'Hotline Miami'. 
+The second visual has moving lines that both naturally accelerate as they go down, and also accelerate based of 
+the music. It also has a sun that moves side to side, the speed that it moves depends on the speed of the 
+music, and it also gets bigger and smaller wit the beat. I also have waveforms in the background, those are 
+meant to mimic city buildings, to kinda give a visual of a whole city dancing with the song. I dont know if 
+thats what I ended up achieving, but its certaintly what I tried to achieve. It was actually originally supposed 
+to have palmtrees and a moon too, im sure you can find references to those in the git, but in the end they 
+just plain looked bad, so I removed them.
 
-This is a bulleted list
+#### What I am most proud of
+I'm overall pretty proud of how the second visual came out. I think it, along with the music, give off the 
+exact synthwave atmosphere I was going for. ( I actually didnt know it was called synthwave until recently, 
+but I definetly knew what synthwave looked like). But if I had to narrow it down to one thing, it would be the
+colors, I think I did a good job finding colors that matched. The reason its the thing im most proud of is cause
+its probobly the one witht the biggest viusal effect, even if it wasnt the hardest to implement. (But they were hard to find and match)
 
-- Item
-- Item
+Beyond just whats within the project, I'd say im most proud of how much I learned while doing this project, but thats not what this is about 
+and this is getting long so I'll rapidly move on.
 
-This is a numbered list
+#### What I learned
 
-1. Item
-1. Item
+I learned how to use a varierety of java packeges and frameworks, mostly processing and the various things you can achieve with 
+it. Now this is embarrising to say, but I only got a full grasp of how java classes and objects worked during this 
+project ( I couldnt figure out why you would want to break your program across multiple java files ). I knew how to get 
+classes and objects to work before, but now I actually understand how they work and their use, rather than just being able to 
+do it cause of memorisation. Now this is unrelated to java, but I think its related to the project; I feel like I also learned how to 
+be more creative in general.
 
-This is a [hyperlink](http://bryanduggan.org)
-
-# Headings
-## Headings
-#### Headings
-##### Headings
-
-This is code:
+#### BackgroundVisual
+This was responsible for drawing the background. It sets the rectangles that act as a background, the lines that branch of the centre 
+of the screen, and it also calls on the sun object. I dont think the background could be drawn with a loop since I wanted a specific 
+color for each rectangle. This class also draws the lines that go across the screen, this time there is a loop since its just two colors.
+This class also calls on the sun, which I will get to in a bit.
 
 ```Java
-public void render()
-{
-	ui.noFill();
-	ui.stroke(255);
-	ui.rect(x, y, width, height);
-	ui.textAlign(PApplet.CENTER, PApplet.CENTER);
-	ui.text(text, x + width * 0.5f, y + height * 0.5f);
-}
+int c = 0;
+        for (int i = 4; i <= 44; i = i + 4) {
+
+            if (c == 0) {
+                p.stroke(182, 31, 76);
+                c = 1;
+            } else if (c == 1) {
+                p.stroke(0);
+                c = 0;
+            }
+
+            p.line(0, halfHeight - i, width, halfHeight - i);
+
+        }
 ```
 
-So is this without specifying the language:
+#### Lines
+This is the class responsible for creating the DropLines objects. It contails an array list to keep track of the lines, and its draw 
+function calls the methods from DropLines to keep the spawned lines moving. The another line spawns once the last line in the array 
+passes 'parent.height / 2', and a line dissapears when it passes 'parent.height'.
 
+#### DropLines
+This is the class that is responsible for the lines. It keeps track of the position of the line, and the speed its going & accelerating at. 
+It contains methods do display and update the line:
+```java
+void update() {
+        speed += 0.09;
+        y += speed + lerpBoost;
+    }
+
+    void display() {
+        parent.stroke(330, 100, 100);
+        parent.line(0, y+50, parent.width, y+50);
+    }
 ```
-public void render()
-{
-	ui.noFill();
-	ui.stroke(255);
-	ui.rect(x, y, width, height);
-	ui.textAlign(PApplet.CENTER, PApplet.CENTER);
-	ui.text(text, x + width * 0.5f, y + height * 0.5f);
-}
+
+#### sun
+This is responsible for both the sun going left and right on the screen, and also the waveforms that spawn in the background. The speed at which the sun travels depends on the song, the louder it is the faster it travels. Here is the code responsible for it:
+```java
+for (int i = 0; i < lerpBuffer.length / 15; i++) {
+
+            speed = map(lerpBuffer[i], -0.06830386f, 0.06844372f, 0f, 100f);
+
+            p.fill(330, 100, 100);
+
+            p.rect(i + o, halfHeight - 44, 40, -fft.getBand(i) * 2f);
+
+            o += 40;
+
+            p.fill(47, 30, 77);
+
+            p.ellipse((halfWidth) + cos(this.sun) * 600f, halfHeight + sin(this.sun) * 300f,
+                    250 + (abuffer.get(i) * 40f),
+                    250 + (abuffer.get(i) * 40f));
+
+        }
+        o = 0;
 ```
+Every wafeform is 40 pixels thick, and a new waveform is spawned every 40 pixels, making it seamless. int o, which is responsible for the placement of the waveforms, gets updated every iteration, and then is reset back down to 0 so its ready for when its time for the next loop. In the ellipse, the suns size is increased and decreased with 'abuffer.get(i) * 40f', but it will always be at least 250 pixels.
 
-This is an image using a relative URL:
+#### IgnasVisual2
 
-![An image](images/p8.png)
+Creates the BackgroundVisual and Lines objects, then calls its methods. Also passes down the needed values down to those methods.
 
-This is an image using an absolute URL:
+#### IgnasVisual1
 
-![A different image](https://bryanduggandotorg.files.wordpress.com/2019/02/infinite-forms-00045.png?w=595&h=&zoom=2)
+5 boxes that rotate, change colors, and change sizes along with the song. There is also another cube that spawns and expands whenever the sound gets loud enough.
+This is the code that decides the position of each cube:
+```java
+if (position == 0) {
+                parent.translate(0, 0, -400);
+            }
 
-This is a youtube video:
+            else if (position == 1) {
+                parent.translate(parent.width, 0, -400);
+            }
 
-[![YouTube](http://img.youtube.com/vi/J2kHSSFA4NU/0.jpg)](https://www.youtube.com/watch?v=J2kHSSFA4NU)
+            else if (position == 2) {
+                parent.translate(0, parent.height, -400);
+            }
 
-This is a table:
+            else if (position == 3) {
+                parent.translate(parent.width, parent.height, -400);
+            }
 
-| Heading 1 | Heading 2 |
-|-----------|-----------|
-|Some stuff | Some more stuff in this column |
-|Some stuff | Some more stuff in this column |
-|Some stuff | Some more stuff in this column |
-|Some stuff | Some more stuff in this column |
-
-
-
-
-D22125465 Idea:
-
-I took inspiration from a video game I played  few years ago, the song is also from that video game.
-The game is set in Maimi, and I tried to get the visual to match that asthetic.
-
-
-
-
-Functionality:
-
-You can scroll through the visuals, pause the song, and reset the song.
-
-
-
-
-D22125465 Git Commits:
-
-Commits on May 3, 2023
-Added the functionality to pause and reset, didnt realise that was mi… 
-
-@Imkelis
-Imkelis committed 12 hours ago
- 
-Changed how the background is formed so that the background stretched… 
-
-@Imkelis
-Imkelis committed 13 hours ago
- 
-Merge branch 'master' of https://github.com/Imkelis/MusicVisuals
-
-@Imkelis
-Imkelis committed 13 hours ago
- 
-Changed how lines are created again, now its actually decent
-
-@Imkelis
-Imkelis committed 13 hours ago
- 
-Commits on Apr 25, 2023
-I previously broke elements of my code without realising. Fixed it now.
-
-@Imkelis
-Imkelis committed last week
- 
-Small things
-
-@Imkelis
-Imkelis committed last week
- 
-Seperated my code into class, and other small changes
-
-@Imkelis
-Imkelis committed last week
- 
-Merge branch 'master' of https://github.com/Imkelis/MusicVisuals
-
-@Imkelis
-Imkelis committed last week
- 
-Seperated my code into classes, also a few other small changes.
-
-@Imkelis
-Imkelis committed last week
- 
-Merge branch 'master' of https://github.com/Imkelis/MusicVisuals
-
-@Imkelis
-Imkelis committed last week
- 
-commit before pull
-
-@Imkelis
-Imkelis committed last week
- 
-Commits on Apr 24, 2023
-Changed how the lines are made, now made in its own class. Also remov… 
-
-@Imkelis
-Imkelis committed last week
- 
-Cleaned up some stuff.
-
-@Imkelis
-Imkelis committed last week
- 
-Created a new class to launch our code, and also edited alot of my co… 
-
-@Imkelis
-Imkelis committed last week
- 
-Commits on Apr 19, 2023
-Changed the way the colored lines in the middle of the screen are mad… 
-
-@Imkelis
-Imkelis committed 2 weeks ago
- 
-Added a moon
-
-@Imkelis
-Imkelis committed 2 weeks ago
- 
-Commits on Apr 7, 2023
-Fixing minor things
-
-@Imkelis
-Imkelis committed last month
- 
-Changed some colors, trying to figure out how to make nice palm trees
-
-@Imkelis
-Imkelis committed last month
- 
-Commits on Apr 6, 2023
-Need to finish palmtrees, and maybe remake the floor for my second vi… 
-
-@Imkelis
-Imkelis committed last month
- 
-Added background, idk if I like the colors so may change later
-
-@Imkelis
-Imkelis committed last month
- 
-Got the road moving, but the lines are getting grouped
-
-@Imkelis
-Imkelis committed last month
- 
-Trying to get the road to move smoothly
-
-@Imkelis
-Imkelis committed last month
- 
-Started second visual, fixed the weird angle that developed on the fi… 
-
-Imkelis committed last month
-
-
-Finally got a song and some inspiration, starting next visual element… 
-
-Imkelis committed last month
- 
-
-
-First commit, I mistakenly started working on this project on my own repo
-
-Imkelis committed last month
-
+            else if (position == 4) {
+                parent.translate(halfWidth, halfHeight, -400);
+            }
+```
+It just translates to the position needed for the cube, then executes the code under the if & else if's. I would do this different I could 
+start again, but this was the first visual I did when I was still uncomfortable with java, so at the time I was just happy to get it working.
