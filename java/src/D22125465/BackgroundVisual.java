@@ -37,18 +37,20 @@ public class BackgroundVisual extends PApplet {
 
         p.background(11, 100, 62);
         p.noStroke();
+        int rectHeight = (p.height / 2) / 6;
+
         p.fill(200, 45, 78);
-        p.rect(0, 0, width, 76);
+        p.rect(0, 0 * rectHeight, p.width, rectHeight);
         p.fill(206, 41, 77);
-        p.rect(0, 76, width, 152);
+        p.rect(0, 1 * rectHeight, p.width, rectHeight);
         p.fill(221, 35, 77);
-        p.rect(0, 152, width, 228);
+        p.rect(0, 2 * rectHeight, p.width, rectHeight);
         p.fill(238, 30, 77);
-        p.rect(0, 228, width, 304);
+        p.rect(0, 3 * rectHeight, p.width, rectHeight);
         p.fill(260, 35, 76);
-        p.rect(0, 304, width, 380);
+        p.rect(0, 4 * rectHeight, p.width, rectHeight);
         p.fill(282, 45, 75);
-        p.rect(0, 380, width, 456);
+        p.rect(0, 5 * rectHeight, p.width, rectHeight);
 
         coolSun.drawSun(lerpBuffer, fft, abuffer, biggest);
 

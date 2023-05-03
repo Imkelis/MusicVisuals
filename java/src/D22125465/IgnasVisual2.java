@@ -17,7 +17,6 @@ public class IgnasVisual2 extends Visual {
     }
 
     BackgroundVisual CoolBack;
-    // FallingLines fallingLines;
     Lines downLines;
 
     public void draw(float[] lerpFFTbuffer, float[] lerpBuffer, AudioBuffer abuffer, FFT fft, float biggest) {

@@ -46,8 +46,8 @@ public class Combined extends Visual {
 
 
     public void settings() {
-        size(2048, 1000, P3D);   // For smaller screen
-        //size(4096, 1500, P3D);        // for bigger screen
+        //size(2048, 1000, P3D);   // For smaller screen
+        size(4096, 1500, P3D);        // for bigger screen
     }
 
     public void setup() {
