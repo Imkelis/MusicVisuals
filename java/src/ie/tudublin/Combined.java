@@ -39,7 +39,7 @@ public class Combined extends Visual {
     ArrayList<Star> entities = new ArrayList<>();
 
     public void keyPressed() {
-        if (key >= '0' && key <= '9') {
+        if (key >= '0' && key <= '4') {
             Mode = key - '0';
         }
         else if(key == ' ' && aplayer.isPlaying()){
@@ -57,7 +57,8 @@ public class Combined extends Visual {
 
     public void settings() {
         //size(2048, 1000, P3D);   // For smaller screen
-        size(4096, 1500, P3D);        // for bigger screen
+        //size(4096, 1500, P3D);        // for bigger screen
+        size(1920, 1080, P3D);        // for recording
     }
 
     public void setup() {

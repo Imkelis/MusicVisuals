@@ -2,6 +2,7 @@
 
 Name & student Number: 
 <br />Jordan Murray - D22126809
+<br />Tom Keane - C21371216
 
 ## Instructions
 - Fork this repository and use it a starter project for your assignment
@@ -64,6 +65,64 @@ Another aspect that i've learned considerably more about since starting this pro
 i consider essential as I progress further. Regularly encountering problems while becoming 
 properly accustomed to git was very benefical because as time went on most of the problems 
 have been seen before and can be appropriately handled.
+
+
+## C21371216
+#### Doughnut.java
+
+The Doughnut.java class contains code for creating pillars, circles and torus shapes that respond to volume and frequency levels of the audio. While running it scrolls the view from right to left. It uses functions to create the shapes and a lerp buffer to smooth movements of the shapes. There are two different visuals, the first is moving pillars and the second has a bouncing torus shapes surrounded by circles changing in size and colour. 
+
+ 
+### How it works 
+
+There are functions for each shape and some of these are functions that call other functions repeatedly to make a new shape. For example, a doughnut/torus shape is created with repeated circle functions. Here is a demonstration of both functions: 
+
+```Java 
+public void circ3d(float x,float y,float z, float r) //circle 
+{ 
+    parent.bezier(x, y-r, z, x+(4/3f)*r, y-r, z, x+(4/3f)*r, y+r, z, x, y+r, z);//right 
+    parent.bezier(x, y-r, z, x-(4/3f)*r, y-r, z, x-(4/3f)*r, y+r, z, x, y+r, z);//left 
+} 
+ ``` 
+```Java 
+public void doughnut(float x, float y, float z, float r, float r2, float detail) //repeated circles to make doughnut 
+{ 
+    for(int i=0; i<detail; i++)   
+    { 
+        ang = (i/(detail))*TWO_PI; 
+        circ3d(x,y,r2*sin(ang),r+r2*cos(ang)); 
+    } 
+} 
+``` 
+
+The view is scrolled right to left by incrementing the variable transX and using the variable speed to control the movement speed  
+
+```Java 
+transX += speed; //scrolling sideways 
+parent.translate(transX, 0);
+```
+
+The 8 pillars are each tied to the amplitude of a frequency band. Their movement and the wave affect are achieved using sin waves. They eventually disappear to avoid crossing over onto the next visual.  
+
+The position of the converging circles is stored in an array. When the circles move backwards to a certain point, the positions jump back forward, making it look like the last circle disappeared. They also change in size in response to the audio volume. 
+
+```Java 
+for(j=0;j<20;j++){    //incrementing postition backwards for sliced circles 
+            array[j] += -1; 
+} 
+
+if(array[0]<-220){   // when too far back reset position 
+    for(j=0;j<20;j++){ 
+        array[j] = j*20-200; 
+    } 
+} 
+``` 
+
+The doughnut/torus shapes change in height and position in response to the audio to give the affect that they are bouncing. The lerp is used to smooth this movement.  
+
+### What I am most proud of 
+The main thing I'm proud of is getting the bouncing animation on the doughnut shape working right.  It took some time to get the correct values for the movement and to get the lerp working smoothly. After a lot of trial and error I got it working properly and I'm happy with how it turned out.
+
 
 
 # Markdown Tutorial
@@ -133,4 +192,155 @@ This is a table:
 |Some stuff | Some more stuff in this column |
 |Some stuff | Some more stuff in this column |
 |Some stuff | Some more stuff in this column |
+
+
+
+
+D22125465 Idea:
+
+I took inspiration from a video game I played  few years ago, the song is also from that video game.
+The game is set in Maimi, and I tried to get the visual to match that asthetic.
+
+
+
+
+Functionality:
+
+You can scroll through the visuals, pause the song, and reset the song.
+
+
+
+
+D22125465 Git Commits:
+
+Commits on May 3, 2023
+Added the functionality to pause and reset, didnt realise that was mi… 
+
+@Imkelis
+Imkelis committed 12 hours ago
+ 
+Changed how the background is formed so that the background stretched… 
+
+@Imkelis
+Imkelis committed 13 hours ago
+ 
+Merge branch 'master' of https://github.com/Imkelis/MusicVisuals
+
+@Imkelis
+Imkelis committed 13 hours ago
+ 
+Changed how lines are created again, now its actually decent
+
+@Imkelis
+Imkelis committed 13 hours ago
+ 
+Commits on Apr 25, 2023
+I previously broke elements of my code without realising. Fixed it now.
+
+@Imkelis
+Imkelis committed last week
+ 
+Small things
+
+@Imkelis
+Imkelis committed last week
+ 
+Seperated my code into class, and other small changes
+
+@Imkelis
+Imkelis committed last week
+ 
+Merge branch 'master' of https://github.com/Imkelis/MusicVisuals
+
+@Imkelis
+Imkelis committed last week
+ 
+Seperated my code into classes, also a few other small changes.
+
+@Imkelis
+Imkelis committed last week
+ 
+Merge branch 'master' of https://github.com/Imkelis/MusicVisuals
+
+@Imkelis
+Imkelis committed last week
+ 
+commit before pull
+
+@Imkelis
+Imkelis committed last week
+ 
+Commits on Apr 24, 2023
+Changed how the lines are made, now made in its own class. Also remov… 
+
+@Imkelis
+Imkelis committed last week
+ 
+Cleaned up some stuff.
+
+@Imkelis
+Imkelis committed last week
+ 
+Created a new class to launch our code, and also edited alot of my co… 
+
+@Imkelis
+Imkelis committed last week
+ 
+Commits on Apr 19, 2023
+Changed the way the colored lines in the middle of the screen are mad… 
+
+@Imkelis
+Imkelis committed 2 weeks ago
+ 
+Added a moon
+
+@Imkelis
+Imkelis committed 2 weeks ago
+ 
+Commits on Apr 7, 2023
+Fixing minor things
+
+@Imkelis
+Imkelis committed last month
+ 
+Changed some colors, trying to figure out how to make nice palm trees
+
+@Imkelis
+Imkelis committed last month
+ 
+Commits on Apr 6, 2023
+Need to finish palmtrees, and maybe remake the floor for my second vi… 
+
+@Imkelis
+Imkelis committed last month
+ 
+Added background, idk if I like the colors so may change later
+
+@Imkelis
+Imkelis committed last month
+ 
+Got the road moving, but the lines are getting grouped
+
+@Imkelis
+Imkelis committed last month
+ 
+Trying to get the road to move smoothly
+
+@Imkelis
+Imkelis committed last month
+ 
+Started second visual, fixed the weird angle that developed on the fi… 
+
+Imkelis committed last month
+
+
+Finally got a song and some inspiration, starting next visual element… 
+
+Imkelis committed last month
+ 
+
+
+First commit, I mistakenly started working on this project on my own repo
+
+Imkelis committed last month
 
