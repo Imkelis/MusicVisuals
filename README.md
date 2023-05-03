@@ -120,8 +120,12 @@ if(array[0]<-220){   // when too far back reset position
 
 The doughnut/torus shapes change in height and position in response to the audio to give the affect that they are bouncing. The lerp is used to smooth this movement.  
 
+### What I did
+I made a visual with pillars, circles and doughnut shapes using java functions and used minim to analyze the audio of the song and control the movement of shapes to go along with the volume and different frequency bands of the song. I made the size and colours respond to the audio and I used lerp to smooth the movement of the shapes.
 ### What I am most proud of 
 The main thing I'm proud of is getting the bouncing animation on the doughnut shape working right.  It took some time to get the correct values for the movement and to get the lerp working smoothly. After a lot of trial and error I got it working properly and I'm happy with how it turned out.
+## What I learned
+I learned a lot about java, processing and git doing this project. I expanded my knowledge on functions, classes and how to use multiple files in one program using java. I learned about the processing library and how to make shapes and visuals. This was my first time using github for a project so I learned a lot about how to use git bash and github and now I feel more confident with these programs.
 
 
 
