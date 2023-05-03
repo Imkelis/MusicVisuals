@@ -119,6 +119,5 @@ public class Orbiter extends Star {
         p.noStroke(); 
         p.popMatrix();
     }
-
     
 }
