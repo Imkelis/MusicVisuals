@@ -18,10 +18,10 @@ Name & student Number:
 
 # Screenshots
 
-![An image](images/S4.png)
 ![An image](images/S3.png)
-![An image](images/S1.png)
+![An image](images/S4.png)
 ![An image](images/S2.png)
+![An image](images/S1.png)
 # Instructions
 
 # How it works
